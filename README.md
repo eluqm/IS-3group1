@@ -113,7 +113,7 @@ El prototipo del producto se realizó en la herramienta Figma y se disponibiliza
 > [Recurso figma del prototipo (producto mínimo viable)](https://www.figma.com/file/rAApUEZHezknffAMt8TrxC/ProtoV1?node-id=107%3A18)
 
 <p align="center">
-  <img src='./docs/prototypes-view-generalpng' width='600px'>
+  <img src='./docs/prototypes-view-generalpng.png' width='600px'>
 </p>
 
 ## Contribuidores
