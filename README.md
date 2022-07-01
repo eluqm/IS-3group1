@@ -62,30 +62,65 @@ Waqya se perfila a ser una plataforma web como un medio de difusión de llamados
 
 1. **Sucripción a un boletín**. El sistema tendrá un sistema de suscripción a un boletín a temas de interés personalizado.
 
-1. **Logueo**
+1. **Registro con API's Google, Facebook y GitHub**: El sistema ofrecerá un sistema de registro para asociar cuentas de Google, Facebook y GitHub.
 
+1. **Registro usual con correo y contraseña**. Así mismo se proveerá la opción de registrarse de forma tradicional con correo y contraseña.
 
-1. ~~Requisito descartado~~ 
+1. **Inicio de sesión con API's Google, Facebook y GitHub**. Análogo a los anteriores requisitos.
+
+1. **Inicio de sesión usual  con correo y contraseña**. Análogo a los anteriores requisitos.
+
 
 ## Requisitos no funcionales
 
+1. **Desempeño**. El sistema presentará un almacenamiento basado en la nube (_Atlas Cluster_), ofreciendo confiabilidad a los usuarios. Teniendo un tiempo de respuesta óptima.
+
+1. **Seguridad**. El acceso se realizará con tokens para encriptar las credenciales de acceso.
+
+1. **Fiabilidad**. El sistema tendrá una confiabilidad moderada debido a las limitaciones de los recursos.
+
+1. **Disponibilidad**. El sistema estará operando al 100% de sus funcionalidades a excepción de que se le esté dando mantenimiento o empiece a fallar algún servicio externo.
+
+1. **Portabilidad**. El sistema debe ser adaptado de forma efectiva y eficiente a diferentes entornos determinados de software, operacionales o de uso. Y será ejecutado en diferentes plataformas.
+
+1. **Usabilidad**. El sistema debe tener la característica de ser comprendido, fácil de usar y ser atractivo para el usuario. Adicionalmente se tiene que tener una tasa baja en errores.
+
+## Diseño de arquitectura
+
+La arquitectura elegida para la implementación del proyecto fue el _stack_ MERN. MERN significa MongoDB, Express, React, Node, después de las cuatro tecnologías clave que componen la pila.
+
+* **MongoDB** - base de datos de documentos.
+* **Express** (.js) - Marco web Node.js
+* **React** (.js): un marco de JavaScript del lado del cliente
+* **Node** (.js): el principal servidor web de JavaScript
+
+<p align='center'>
+  <img src='./docs/mern-stack-arquitecture.webp'  src='400'/>
+</p>
+
+Express y Node conforman el nivel medio (aplicación). Express.js es un marco web del lado del servidor y Node.js es la popular y potente plataforma de servidor de JavaScript. Independientemente de la variante que elija, ME(RVA)N es el enfoque ideal para trabajar con JavaScript y JSON, en todo momento.
+
+
+## Diseño del producto
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FrAApUEZHezknffAMt8TrxC%2FProtoV1%3Fnode-id%3D107%253A18" allowfullscreen></iframe>
 
 ## Contribuidores
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
-<center>
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/reqhiem"><img src="https://avatars.githubusercontent.com/u/52427932?v=4" width="50px;" alt=""/><br /><sub><b>Joel Perca</b></sub></a><br /><a href="https://github.com/reqhiem" title="Code">
-    <td align="center"><a href="https://github.com/MisaelVM"><img src="https://avatars.githubusercontent.com/u/64271736?v=4" width="50px;" alt=""/><br /><sub><b>Misael Svante</b></sub></a><br /><a href="https://github.com/MisaelVM" title="Code">
-    </td>
-    <td align="center"><a href="https://github.com/ElizabethYasmin"><img src="https://avatars.githubusercontent.com/u/62725994?v=4" width="50px;" alt=""/><br /><sub><b>Elizabeth Yasmin</b></sub></a><br /><a href="https://github.com/ElizabethYasmin" title="Code">
-    <td align="center"><a href="https://github.com/EdgarEspinozaPE"><img src="https://avatars.githubusercontent.com/u/64268406?v=4" width="50px;" alt=""/><br /><sub><b>Edgar Alfonso</b></sub></a><br /><a href="https://github.com/EdgarEspinozaPE" title="Code">
-    </td>
-    <td align="center"><a href="https://github.com/ImaMos01"><img src="https://avatars.githubusercontent.com/u/64240176?v=4" width="50px;" alt=""/><br /><sub><b>Imanol Brayan</b></sub></a><br /><a href="https://github.com/ImaMos01" title="Code">
-    </td>
-  </tr>
-</table>
-</center>
+<p align='center'>
+  <table>
+    <tr>
+      <td align="center"><a href="https://github.com/reqhiem"><img src="https://avatars.githubusercontent.com/u/52427932?v=4" width="50px;" alt=""/><br /><sub><b>Joel Perca</b></sub></a><br /><a href="https://github.com/reqhiem" title="Code">
+      <td align="center"><a href="https://github.com/MisaelVM"><img src="https://avatars.githubusercontent.com/u/64271736?v=4" width="50px;" alt=""/><br /><sub><b>Misael Svante</b></sub></a><br /><a href="https://github.com/MisaelVM" title="Code">
+      </td>
+      <td align="center"><a href="https://github.com/ElizabethYasmin"><img src="https://avatars.githubusercontent.com/u/62725994?v=4" width="50px;" alt=""/><br /><sub><b>Elizabeth Yasmin</b></sub></a><br /><a href="https://github.com/ElizabethYasmin" title="Code">
+      <td align="center"><a href="https://github.com/EdgarEspinozaPE"><img src="https://avatars.githubusercontent.com/u/64268406?v=4" width="50px;" alt=""/><br /><sub><b>Edgar Alfonso</b></sub></a><br /><a href="https://github.com/EdgarEspinozaPE" title="Code">
+      </td>
+      <td align="center"><a href="https://github.com/ImaMos01"><img src="https://avatars.githubusercontent.com/u/64240176?v=4" width="50px;" alt=""/><br /><sub><b>Imanol Brayan</b></sub></a><br /><a href="https://github.com/ImaMos01" title="Code">
+      </td>
+    </tr>
+  </table>
+</p>
