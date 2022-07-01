@@ -1,10 +1,10 @@
 
 
-<center>
+<p align="center">
   <img src='./docs/imagotipo.png' width='300px' />
-</center>
+</p>
 
-<center>
+
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg">
   <a href="https://app.netlify.com/sites/tnote/deploys">
@@ -25,10 +25,10 @@
     <img src="https://sonarcloud.io/api/project_badges/measure?project=taniarascia_takenote&metric=security_rating">
   </a>
 </p>
-</center>
+
 
 <center>
-  <img src='./docs/capture_page.png' width='6000px' />
+  <img src='./docs/capture_page.png' width='600px' />
 </center>
 
 # Ingeniería de Software: Proyecto final de curso
@@ -62,7 +62,7 @@ Waqya se perfila a ser una plataforma web como un medio de difusión de llamados
 
 1. **Sucripción a un boletín**. El sistema tendrá un sistema de suscripción a un boletín a temas de interés personalizado.
 
-1. 
+1. **Logueo**
 
 
 1. ~~Requisito descartado~~ 
