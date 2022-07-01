@@ -27,9 +27,9 @@
 </p>
 
 
-<center>
+<p align="center">
   <img src='./docs/capture_page.png' width='600px' />
-</center>
+</p>
 
 # Ingeniería de Software: Proyecto final de curso
 
@@ -39,9 +39,9 @@ Waqya se perfila a ser una plataforma web como un medio de difusión de llamados
 
 ## Funcionalides del producto
 
-<center>
+<p align="center">
   <img src='./docs/waqya_funcionalidades.png' width='700px' />
-</center>
+</p>
 
 ## Características de los usuarios
 
