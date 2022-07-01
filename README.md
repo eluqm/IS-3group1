@@ -103,14 +103,16 @@ Express y Node conforman el nivel medio (aplicación). Express.js es un marco we
 
 ## Diseño del producto
 
+<p align="center">
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FrAApUEZHezknffAMt8TrxC%2FProtoV1%3Fnode-id%3D107%253A18" allowfullscreen></iframe>
+</p>
 
 ## Contribuidores
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
-<p align='center'>
+<p align="center">
   <table>
     <tr>
       <td align="center"><a href="https://github.com/reqhiem"><img src="https://avatars.githubusercontent.com/u/52427932?v=4" width="50px;" alt=""/><br /><sub><b>Joel Perca</b></sub></a><br /><a href="https://github.com/reqhiem" title="Code">
