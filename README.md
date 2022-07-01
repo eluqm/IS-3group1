@@ -103,8 +103,12 @@ Express y Node conforman el nivel medio (aplicación). Express.js es un marco we
 
 ## Diseño del producto
 
+El prototipo del producto se realizó en la herramienta Figma y se disponibiliza en el siguiente enlace:
+
+> [Recurso figma del prototipo (producto mínimo viable)](https://www.figma.com/file/rAApUEZHezknffAMt8TrxC/ProtoV1?node-id=107%3A18)
+
 <p align="center">
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FrAApUEZHezknffAMt8TrxC%2FProtoV1%3Fnode-id%3D107%253A18" allowfullscreen></iframe>
+  <img src='./docs/prototypes-view-generalpng' width='600px'>
 </p>
 
 ## Contribuidores
