@@ -100,6 +100,11 @@ La arquitectura elegida para la implementación del proyecto fue el _stack_ MERN
 
 Express y Node conforman el nivel medio (aplicación). Express.js es un marco web del lado del servidor y Node.js es la popular y potente plataforma de servidor de JavaScript. Independientemente de la variante que elija, ME(RVA)N es el enfoque ideal para trabajar con JavaScript y JSON, en todo momento.
 
+Adicionalmente detallamos algunas de las tecnologías que adoptamos:
+
+* **TypeScript**, como lenguaje de programación.
+* **Chakra-UI**, como framework para la interfaz en React.
+* **Framer-Motion**, como librería para manipular animaciones en React.
 
 ## Diseño del producto
 
@@ -116,8 +121,8 @@ El prototipo del producto se realizó en la herramienta Figma y se disponibiliza
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
-<p align="center">
-  <table>
+
+  <table align="center">
     <tr>
       <td align="center"><a href="https://github.com/reqhiem"><img src="https://avatars.githubusercontent.com/u/52427932?v=4" width="50px;" alt=""/><br /><sub><b>Joel Perca</b></sub></a><br /><a href="https://github.com/reqhiem" title="Code">
       <td align="center"><a href="https://github.com/MisaelVM"><img src="https://avatars.githubusercontent.com/u/64271736?v=4" width="50px;" alt=""/><br /><sub><b>Misael Svante</b></sub></a><br /><a href="https://github.com/MisaelVM" title="Code">
@@ -129,4 +134,3 @@ El prototipo del producto se realizó en la herramienta Figma y se disponibiliza
       </td>
     </tr>
   </table>
-</p>
