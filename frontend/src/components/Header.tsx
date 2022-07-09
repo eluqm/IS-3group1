@@ -5,8 +5,11 @@ import {
     Spacer,
     Grid,
     GridItem,
-    Input
+    Input,
+    Button
 } from '@chakra-ui/react'
+import { SearchIcon } from '@chakra-ui/icons'
+
 import './Header.css'
 
 const Header = () => {
@@ -18,13 +21,16 @@ const Header = () => {
                         Waqya
                    </p>
                 </GridItem>
-                <GridItem colSpan={9} p='2'>
-                    <Input placeholder='Basic usage' />
+                <GridItem colSpan={8} p='2'>
+                    <Input placeholder='Basic usage' color={'cyan.500'} />
                 </GridItem>
-                <GridItem p='2'>
+                <GridItem pl='0.1' pt='2'>
+                    <Button colorScheme='blue'><SearchIcon/></Button>
+                </GridItem>
+                <GridItem p='1'pt='15'>
                     Login
                 </GridItem>
-                <GridItem p='2'>
+                <GridItem p='2' pt='15'>
                     Sign up
                 </GridItem>
             </Grid>   
