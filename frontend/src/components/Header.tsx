@@ -6,7 +6,9 @@ import {
     Grid,
     GridItem,
     Input,
-    Button
+    Button,
+    Image,
+    
 } from '@chakra-ui/react'
 import { SearchIcon } from '@chakra-ui/icons'
 
@@ -17,12 +19,22 @@ const Header = () => {
         <Container maxW='full' centerContent boxShadow={'md'} bg='white'>
             <Grid templateColumns='repeat(12, 1fr)' color={'black'}>
                 <GridItem p='2'>
+                    <Image
+                        objectFit='cover'
+                        boxSize="100%"
+                        w='7'
+                        src={
+                        '/src/img/imagotipo.png'
+                        }
+                    />
+                </GridItem>
+                <GridItem p='2'>
                    <p className='title-waqya'>
                         Waqya
                    </p>
                 </GridItem>
-                <GridItem colSpan={8} p='2'>
-                    <Input placeholder='Basic usage' color={'cyan.500'} />
+                <GridItem colSpan={7} p='2' >
+                    <Input placeholder='Basic usage' color={'#9c98e7'} />
                 </GridItem>
                 <GridItem pl='0.1' pt='2'>
                     <Button colorScheme='blue'><SearchIcon/></Button>
