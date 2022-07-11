@@ -1,9 +1,22 @@
 import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
-
-//for chakra-ui
-import { Box } from '@chakra-ui/react'
+import {
+  Heading,
+  Avatar,
+  Box,
+  Center,
+  Text,
+  HStack,
+  Stack,
+  Button,
+  Link,
+  Badge,
+  useColorModeValue,
+  Spacer,
+  Image,
+  Flex
+} from '@chakra-ui/react';
 
 //import components
 import Header from './components/Header'
