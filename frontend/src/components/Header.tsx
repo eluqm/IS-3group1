@@ -8,7 +8,6 @@ import {
     Input,
     Button,
     Image,
-    
 } from '@chakra-ui/react'
 import { SearchIcon } from '@chakra-ui/icons'
 
