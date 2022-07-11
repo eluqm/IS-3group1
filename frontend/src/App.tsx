@@ -7,6 +7,8 @@ import { Box } from '@chakra-ui/react'
 
 //import components
 import Header from './components/Header'
+import Footer from './components/Footer'
+import Landing from './pages/landing/Landing'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,9 +16,8 @@ function App() {
   return (
     <Box className="App" bg='#f5f5f5'>
       <Header/>
-      <div>
-        asdadsasd
-      </div>
+      <Landing/>
+      <Footer/>
     </Box>
   )
 }

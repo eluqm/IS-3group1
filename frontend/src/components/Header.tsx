@@ -5,7 +5,9 @@ import {
     Spacer,
     Grid,
     GridItem,
-    Input
+    Input,
+    Button,
+    ButtonGroup
 } from '@chakra-ui/react'
 import './Header.css'
 
@@ -19,13 +21,29 @@ const Header = () => {
                    </p>
                 </GridItem>
                 <GridItem colSpan={9} p='2'>
-                    <Input placeholder='Basic usage' />
+                    <Flex gap='2'>
+                        <Input placeholder='Basic usage' />
+
+                        <ButtonGroup>
+                            <Button colorScheme={'gray'} variant='solid'>
+                                s
+                            </Button>
+                            <Button colorScheme={'blue'} variant='solid'>
+                                o
+                            </Button>
+                        </ButtonGroup>
+                    </Flex>
                 </GridItem>
-                <GridItem p='2'>
-                    Login
-                </GridItem>
-                <GridItem p='2'>
-                    Sign up
+
+                <GridItem p='2' colEnd={15}>
+                    <ButtonGroup gap='2'>
+                        <Button colorScheme={'teal'} variant='solid'>
+                        Log in
+                        </Button>
+                        <Button variant='link'>
+                            Sign up
+                        </Button>
+                    </ButtonGroup>
                 </GridItem>
             </Grid>   
         </Container>
