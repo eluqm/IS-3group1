@@ -9,14 +9,15 @@ import {
     Button,
     ButtonGroup,
     Text,
-    Heading,
     HStack,
     VStack,
     Avatar,
-    Badge
+    Badge,
+    SimpleGrid
 } from '@chakra-ui/react'
 import React from 'react';
 import prof from '../img/profile.jpg'
+import { motion } from "framer-motion";
 
 const CommCard = ({
     comment,
@@ -28,18 +29,60 @@ const CommCard = ({
     mail: string;
 }) =>{
     return(
-        <VStack bg='blue.200' mx='20' textAlign='center' w='80%' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-            <HStack p='4' w='full'>
-                <Avatar size='md' name='profile' src={prof}/>
-                <Badge borderRadius='full' px='2' colorScheme='teal'>{mail}</Badge>
-                <Box  fontSize='xs' ml='2'> {date}</Box>
-            </HStack>
-            <Box px='4' pb='4' m='1' fontWeight='semibold' as='h4'>
+        <Box
+            bg='linear-gradient(162deg, rgba(4,193,238,1) 38%, rgba(67,206,250,1) 57%)'  
+            borderWidth='1px' borderRadius='lg'
+            borderColor='black.500' 
+            boxShadow='lg' 
+            overflow='hidden' 
+            maxW='xl'
+            px='2' m='2'
+            as={motion.div}
+            whileHover={{ scale: 1.05 }}
+        >
+            
+            <Flex mx='2' mb='4' mt='2'>
+                <Avatar
+                    boxShadow='lg'
+                    size='md' 
+                    name='profile' 
+                    src={prof}
+                    mx='2' mt='2'
+                />
+                <Box mx='2'>
+                    <Badge 
+                        borderRadius='full' 
+                        mt='4' mb='1'
+                        p='1'  
+                        colorScheme='teal'
+                        textTransform='uppercase'
+                    >
+                        {mail}
+                    </Badge>
+
+                    <Box  fontSize='xs'
+                        letterSpacing='wide'
+                        textTransform='uppercase'
+                        textAlign='initial'
+                        ml='2'
+                    > 
+                        {date} 
+                    </Box>
+                </Box>
+            </Flex>
+            <Box
+                textAlign='initial'  
+                px='2' pb='4' 
+                m='1' 
+                fontWeight='semibold' 
+                as='h4'
+            >
                 <Text>
                     {comment}
                 </Text>
             </Box>
-        </VStack>
+        </Box>
+
     );
 }
 
