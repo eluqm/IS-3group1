@@ -29,14 +29,7 @@ async function main() {
 }
 
 main()
-<<<<<<< HEAD
-    .catch(console.error)
-    .finally(()=>{
-        //client.close();
-    })
-=======
   .catch(console.error)
   .finally(() => {
     // conn.disconnect()
 });
->>>>>>> main
