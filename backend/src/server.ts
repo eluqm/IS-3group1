@@ -26,7 +26,7 @@ app.use('/api/v1/', (req, res) => {
 
 //prevent access to any other direction
 app.use('*', (req, res) => {
-  res.status(400).json({error: `not found`})
+  res.status(404).json({error: `not found`})
 })
 
 export default app;
