@@ -33,9 +33,25 @@
 
 # Ingeniería de Software: Proyecto final de curso
 
+# Problemática y propuesta
+
+## Problemática
+
+No contamos con un canal centralizado de difusión de eventos CFP (_Call for papers_) en CS (_Computer Science_).
+
+Los CFP son un instrumento del equipo editorial esencialmente propicio para los huecos en el conocimiento académico que aún requieren profundización y, por lo tanto, marcan tendencia en la investigación.
+
 ## Perspectiva del producto: Waqya
 
 Waqya se perfila a ser una plataforma web como un medio de difusión de llamados a publicar (_Call for papers_), mediante el cual los usuarios podrán visualizar, comentar y agregar a favoritos los principales _Call for papers_ (C4P) en seminarios, Conferencias, _Workshops_ y _Journals_ en los tópicos más relevantes del área de Ciencia de la Computación.
+
+# Ingeniería de requisitos
+
+Los requisitos pasan por un proceso que consiste en **elicitar** (obtener información), **especificar** (construcción de modelos) y **analizar** (verificación y validación). 
+
+Los requisitos son descritos en un documento de Especificación de Requisitos de Software, según el estándar de IEEE 830.
+
+[Especificación de Requisitos de Software (ERS): Proyecto **Waqya**](./docs/WAQYA_ERS_IEEE_830.pdf)
 
 ## Funcionalides del producto
 
@@ -85,7 +101,21 @@ Waqya se perfila a ser una plataforma web como un medio de difusión de llamados
 
 1. **Usabilidad**. El sistema debe tener la característica de ser comprendido, fácil de usar y ser atractivo para el usuario. Adicionalmente se tiene que tener una tasa baja en errores.
 
+# Diseño de Software
+
+## Diseño de datos
+
+<p align="center">
+  <img src='./docs/waqya_modelo_datos.png' width='700px' />
+</p>
+
 ## Diseño de arquitectura
+
+Arquitectura en capas.
+
+<p align="center">
+  <img src='./docs/waqya_modelo_arquitectura.png' width='700px' />
+</p>
 
 La arquitectura elegida para la implementación del proyecto fue el _stack_ MERN. MERN significa MongoDB, Express, React, Node, después de las cuatro tecnologías clave que componen la pila.
 
@@ -106,7 +136,7 @@ Adicionalmente detallamos algunas de las tecnologías que adoptamos:
 * **Chakra-UI**, como framework para la interfaz en React.
 * **Framer-Motion**, como librería para manipular animaciones en React.
 
-## Diseño del producto
+## Diseño del producto (interfaz)
 
 El prototipo del producto se realizó en la herramienta Figma y se disponibiliza en el siguiente enlace:
 
