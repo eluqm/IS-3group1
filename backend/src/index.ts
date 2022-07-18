@@ -28,5 +28,5 @@ async function main(){
 main()
     .catch(console.error)
     .finally(()=>{
-        client.close();
+        //client.close();
     })
