@@ -16,12 +16,19 @@ import {
 } from '@chakra-ui/react'
 import React from 'react';
 import { motion, Variants } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 const JoinUs = ({
     ObjAnima
 }:{
     ObjAnima: Variants
 }) => {
+    
+    const navigate = useNavigate();
+    const handleClick = () =>{
+        navigate('/signup');
+    };
+
     return(
         <Box 
             bg='linear-gradient(148deg, rgba(47,36,251,1) 0%, rgba(48,48,250,1) 46%, rgba(8,137,252,1) 100%)'
@@ -89,7 +96,11 @@ const JoinUs = ({
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit optio, magni perspiciatis provident accusantium cumque tempora in id quae, recusandae ducimus minima doloremque, similique animi placeat voluptatibus consequuntur exercitationem earum.
                         </Text>
                         <Box mt='20'>
-                            <Button colorScheme='teal' size='md'>
+                            <Button 
+                                colorScheme='teal' 
+                                size='md'
+                                onClick={handleClick}
+                            >
                                 Crear Sesión
                             </Button>
                         </Box>

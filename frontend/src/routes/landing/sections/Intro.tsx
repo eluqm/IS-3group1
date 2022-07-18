@@ -13,12 +13,18 @@ import {
 import React from 'react';
 import backImg from '../../../img/backgr.jpg';
 import { motion, Variants } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 const Intro = ({
     ObjAnima
 }:{
     ObjAnima: Variants
 }) => {
+    const navigate = useNavigate();
+    const handleClick = () =>{
+        navigate('/login');
+    };
+
     return(
         <Box
             bgImage={backImg}
@@ -69,6 +75,7 @@ const Intro = ({
                         mt='20' 
                         colorScheme='green'
                         borderColor='green.900'
+                        onClick={handleClick}
                     >
                         Empezar ahora
                     </Button>
