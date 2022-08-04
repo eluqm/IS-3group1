@@ -9,4 +9,6 @@ export default {
   MONGO_USER: process.env.MONGO_USER || 'admin',
   MONGO_PASSWORD: process.env.MONGO_PASSWORD || 'admin',
   SERVER_PORT: process.env.SERVER_PORT || 8000,
+  JWT_SECRET: process.env.JWT_SECRET || 'jwtSecretKey',
+  JWT_LIFETIME: process.env.JWT_LIFETIME || '30d',
 };
