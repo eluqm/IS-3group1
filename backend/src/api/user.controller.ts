@@ -54,9 +54,11 @@ class UserController {
 
   static deleteUser: RequestHandler = async (req, res) => {
     try {
-      const userDeleted = await User.findByIdAndDelete(req.params.id);
-      return res.json(userDeleted);
-      
+      const { id: userID } = req.params;
+      const userDeleted = await User.findByIdAndDelete(userID);
+      if (!userDeleted)
+        return res.status(404).json({ msg: `No User with id: ${userID}` });
+      return res.status(200).json(userDeleted);      
     } catch (error) {
       return res.json(error);
     }
@@ -64,15 +66,15 @@ class UserController {
 
   static updateUser: RequestHandler = async (req, res) => {
     try {
-      const userUpdated = await User.findByIdAndUpdate(req.params.id, req.query, {
-        new: true,
-      });
-      return res.json(userUpdated);
+      const { id: userID } = req.params;
+      const user = await User.findOneAndUpdate({ _id: userID }, req.body);
+      if (!user)
+        return res.status(404).json({ msg: `No User with id: ${userID}` });
+      return res.status(200).json({ user });
     } catch (error) {
-      return res.json(error);
+      return res.status(500).json({ msg: error });
     }
   }
-
 }
 
 export default UserController;

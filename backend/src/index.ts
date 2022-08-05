@@ -16,7 +16,7 @@ async function main() {
 
     await mongoose.connect(stringConnection, mongooseOptions);
     console.log(
-      `connected to ${config.MONGO_DATABASE} whit ${stringConnection}`
+      `connected to ${config.MONGO_DATABASE} with ${stringConnection}`
     );
 
     app.listen(port, () => {

@@ -1,5 +1,7 @@
 import express from 'express';
 import UserController from '../api/user.controller';
+import AuthMiddleware from '../middleware/auth.middleware';
+import { Privilege } from '../models/User';
 
 const router = express.Router();
 
@@ -7,8 +9,8 @@ const router = express.Router();
 
 router.get('/', UserController.getUsers);
 router.get('/:id', UserController.getUser);
-router.post('/', UserController.createUser);
-router.delete('/:id', UserController.deleteUser);
-router.put('/:id', UserController.updateUser);
+router.post('/', AuthMiddleware.authenticate, AuthMiddleware.authorize(Privilege.Admin), UserController.createUser);
+router.delete('/:id', AuthMiddleware.authenticate, AuthMiddleware.authorize(Privilege.Admin, Privilege.Self), UserController.deleteUser);
+router.patch('/:id', AuthMiddleware.authenticate, AuthMiddleware.authorize(Privilege.Admin, Privilege.Self), UserController.updateUser);
 
 export default router;
