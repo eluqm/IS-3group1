@@ -13,11 +13,10 @@ import {
     HStack,
     SimpleGrid
 } from '@chakra-ui/react'
-import React from 'react';
-import bookImage from '../img/books.png'
-import univImage from '../img/university.png'
-import unitImage from '../img/united.png'
-import respoImage from '../img/responsive.png'
+import bookImage from '../../img/books.png'
+import univImage from '../../img/university.png'
+import unitImage from '../../img/united.png'
+import respoImage from '../../img/responsive.png'
 import { motion } from "framer-motion";
 
 const cards=[
