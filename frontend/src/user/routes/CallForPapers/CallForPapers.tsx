@@ -25,6 +25,30 @@ import { CalendarIcon } from '@chakra-ui/icons';
 
 //import components
 import Header from '../../components/Header';
+import C4PCard from '../../components/C4PCard';
+
+const papers = [
+  {
+    id: 0,
+    eventName: 'SIMBig 2022',
+    tittle: ' 9th International Conference on Information Management and Big Data.',
+    date: '10/04/22',
+    date2:'10/05/24',
+    url:'example link',
+    location:'EEUU',
+    mdName: 'archivo md'  
+  },
+  {
+    id: 1,
+    eventName: 'SIMBig 2022',
+    tittle: ' 9th sdfsInternational Conference on Information Management and Big Data.',
+    date: '10/04/22',
+    date2:'10/05/24',
+    url:'example link',
+    location:'EEsdfUU',
+    mdName: 'archivo md'  
+  },
+];
 
 function CallForPapers() {
   return (
@@ -198,280 +222,19 @@ function CallForPapers() {
             spacing={1}
             align="stretch"
           >
-            <Box pl={8}>
-              <Stack
-                spacing={2}
-                height={240}
-                borderWidth="1px"
-                borderRadius="lg"
-                w={{ sm: '100%', md: '600px' }}
-                //height={{ sm: '400px', md: '20rem' }}
-                direction={{ base: 'column', md: 'row' }}
-                bg={useColorModeValue('white', 'gray.900')}
-                boxShadow={'2xl'}
-                padding={4}
-              >
-                <Stack
-                  flex={1}
-                  flexDirection="column"
-                  justifyContent="center"
-                  p={1}
-                  pt={2}
-                >
-                  <Heading
-                    textAlign={'left'}
-                    fontSize={'2xl'}
-                    fontFamily={'body'}
-                    px={3}
-                  >
-                    SIMBig 2022
-                    <Badge ml="1" colorScheme="green">
-                      New
-                    </Badge>
-                  </Heading>
-
-                  <Text
-                    textAlign={'left'}
-                    color={useColorModeValue('gray.700', 'gray.400')}
-                    px={3}
-                  >
-                    9th International Conference on Information Management and
-                    Big Data.
-                  </Text>
-
-                  <Flex>
-                    <Circle size="30px" bg="#3483FA" color="white">
-                      <CalendarIcon />
-                    </Circle>
-                    <Box ml="3">
-                      <Text fontSize="sm" textAlign="center">
-                        Fecha
-                      </Text>
-                    </Box>
-                  </Flex>
-                </Stack>
-              </Stack>
-            </Box>
-
-            <Box pl={8}>
-              <Stack
-                spacing={2}
-                height={240}
-                borderWidth="1px"
-                borderRadius="lg"
-                w={{ sm: '100%', md: '600px' }}
-                //height={{ sm: '400px', md: '20rem' }}
-                direction={{ base: 'column', md: 'row' }}
-                bg={useColorModeValue('white', 'gray.900')}
-                boxShadow={'2xl'}
-                padding={4}
-              >
-                <Stack
-                  flex={1}
-                  flexDirection="column"
-                  justifyContent="center"
-                  p={1}
-                  pt={2}
-                >
-                  <Heading
-                    textAlign={'left'}
-                    fontSize={'2xl'}
-                    fontFamily={'body'}
-                    px={3}
-                  >
-                    SIMBig 2022
-                    <Badge ml="1" colorScheme="green">
-                      New
-                    </Badge>
-                  </Heading>
-
-                  <Text
-                    textAlign={'left'}
-                    color={useColorModeValue('gray.700', 'gray.400')}
-                    px={3}
-                  >
-                    9th International Conference on Information Management and
-                    Big Data.
-                  </Text>
-
-                  <Flex>
-                    <Circle size="30px" bg="#3483FA" color="white">
-                      <CalendarIcon />
-                    </Circle>
-                    <Box ml="3">
-                      <Text fontSize="sm" textAlign="center">
-                        Fecha
-                      </Text>
-                    </Box>
-                  </Flex>
-                </Stack>
-              </Stack>
-            </Box>
-
-            <Box pl={8}>
-              <Stack
-                spacing={2}
-                height={240}
-                borderWidth="1px"
-                borderRadius="lg"
-                w={{ sm: '100%', md: '600px' }}
-                //height={{ sm: '400px', md: '20rem' }}
-                direction={{ base: 'column', md: 'row' }}
-                bg={useColorModeValue('white', 'gray.900')}
-                boxShadow={'2xl'}
-                padding={4}
-              >
-                <Stack
-                  flex={1}
-                  flexDirection="column"
-                  justifyContent="center"
-                  p={1}
-                  pt={2}
-                >
-                  <Heading
-                    textAlign={'left'}
-                    fontSize={'2xl'}
-                    fontFamily={'body'}
-                    px={3}
-                  >
-                    SIMBig 2022
-                    <Badge ml="1" colorScheme="green">
-                      New
-                    </Badge>
-                  </Heading>
-
-                  <Text
-                    textAlign={'left'}
-                    color={useColorModeValue('gray.700', 'gray.400')}
-                    px={3}
-                  >
-                    9th International Conference on Information Management and
-                    Big Data.
-                  </Text>
-
-                  <Flex>
-                    <Circle size="30px" bg="#3483FA" color="white">
-                      <CalendarIcon />
-                    </Circle>
-                    <Box ml="3">
-                      <Text fontSize="sm" textAlign="center">
-                        Fecha
-                      </Text>
-                    </Box>
-                  </Flex>
-                </Stack>
-              </Stack>
-            </Box>
-
-            <Box pl={8}>
-              <Stack
-                spacing={2}
-                height={240}
-                borderWidth="1px"
-                borderRadius="lg"
-                w={{ sm: '100%', md: '600px' }}
-                //height={{ sm: '400px', md: '20rem' }}
-                direction={{ base: 'column', md: 'row' }}
-                bg={useColorModeValue('white', 'gray.900')}
-                boxShadow={'2xl'}
-                padding={4}
-              >
-                <Stack
-                  flex={1}
-                  flexDirection="column"
-                  justifyContent="center"
-                  p={1}
-                  pt={2}
-                >
-                  <Heading
-                    textAlign={'left'}
-                    fontSize={'2xl'}
-                    fontFamily={'body'}
-                    px={3}
-                  >
-                    SIMBig 2022
-                    <Badge ml="1" colorScheme="green">
-                      New
-                    </Badge>
-                  </Heading>
-
-                  <Text
-                    textAlign={'left'}
-                    color={useColorModeValue('gray.700', 'gray.400')}
-                    px={3}
-                  >
-                    9th International Conference on Information Management and
-                    Big Data.
-                  </Text>
-
-                  <Flex>
-                    <Circle size="30px" bg="#3483FA" color="white">
-                      <CalendarIcon />
-                    </Circle>
-                    <Box ml="3">
-                      <Text fontSize="sm" textAlign="center">
-                        Fecha
-                      </Text>
-                    </Box>
-                  </Flex>
-                </Stack>
-              </Stack>
-            </Box>
-
-            <Box pl={8}>
-              <Stack
-                spacing={2}
-                height={240}
-                borderWidth="1px"
-                borderRadius="lg"
-                w={{ sm: '100%', md: '600px' }}
-                //height={{ sm: '400px', md: '20rem' }}
-                direction={{ base: 'column', md: 'row' }}
-                bg={useColorModeValue('white', 'gray.900')}
-                boxShadow={'2xl'}
-                padding={4}
-              >
-                <Stack
-                  flex={1}
-                  flexDirection="column"
-                  justifyContent="center"
-                  p={1}
-                  pt={2}
-                >
-                  <Heading
-                    textAlign={'left'}
-                    fontSize={'2xl'}
-                    fontFamily={'body'}
-                    px={3}
-                  >
-                    SIMBig 2022
-                    <Badge ml="1" colorScheme="green">
-                      New
-                    </Badge>
-                  </Heading>
-
-                  <Text
-                    textAlign={'left'}
-                    color={useColorModeValue('gray.700', 'gray.400')}
-                    px={3}
-                  >
-                    9th International Conference on Information Management and
-                    Big Data.
-                  </Text>
-
-                  <Flex>
-                    <Circle size="30px" bg="#3483FA" color="white">
-                      <CalendarIcon />
-                    </Circle>
-                    <Box ml="3">
-                      <Text fontSize="sm" textAlign="center">
-                        Fecha
-                      </Text>
-                    </Box>
-                  </Flex>
-                </Stack>
-              </Stack>
-            </Box>
+            {
+              papers.map(it => (
+                <Box pl='8' key={it.id}>
+                  <C4PCard
+                    c4pid={it.id}
+                    eventName={it.eventName}
+                    tittle={it.tittle}
+                    date={it.date}
+                    mdName={it.mdName}
+                  />
+                </Box>
+              ))
+            }
           </VStack>
         </GridItem>
       </Grid>
