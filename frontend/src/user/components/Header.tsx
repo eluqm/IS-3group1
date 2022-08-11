@@ -46,7 +46,7 @@ const Header = () => {
         </GridItem>
         <GridItem p="1" pt="15">
           <Link as={ReachLink} to="/login" _hover={{ textDecoration: 'none' }}>
-            Login
+            Ingresar
           </Link>
         </GridItem>
         <GridItem p="2" pt="15">
@@ -55,7 +55,7 @@ const Header = () => {
             to="/register"
             _hover={{ textDecoration: 'none' }}
           >
-            Sign Up
+            Registrar
           </Link>
         </GridItem>
       </Grid>

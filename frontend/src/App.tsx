@@ -7,6 +7,7 @@ import Dashboard from './admin/Dashboard';
 
 import Login from './user/routes/Login/Login';
 import Signup from './user/routes/SignUp/SignUp';
+import CallForPapers from './user/routes/CallForPapers/CallForPapers';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Signup />} />
+        <Route path="callforpapers" element={<CallForPapers />} />
         <Route path="/admin" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
