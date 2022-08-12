@@ -2,23 +2,20 @@ import { Schema, model } from "mongoose";
 
 const CallForPaperSchema = new Schema(
   {
-    name: {
+    title: {
       type: String,
       required: true,
-    },
-    eventTitle: {
-      type: String,
     },
     eventUrl: {
       type: String,
     },
-    beginDate: {
+    /* beginDate: {
       type: Date,
     },
     endDate: {
       type: Date,
-    },
-    tags: {
+    }, */
+    topics: {
       type: [String],
     },
     location: {

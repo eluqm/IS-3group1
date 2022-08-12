@@ -24,35 +24,30 @@ import {
 import { CalendarIcon } from '@chakra-ui/icons';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const C4PCard = ({
-  c4pid,
-  eventName,
-  tittle,
-  date,
-  mdName
-}:{
-  c4pid:number,
-  eventName: string,
-  tittle: string,
-  date: string,
-  mdName: string
-}) => {
+interface Props {
+  c4pid: number;
+  eventName: string;
+  tittle: string;
+  date: string;
+  mdName: string;
+}
 
+const C4PCard = (props: Props) => {
   const navigate = useNavigate();
 
-  return(
+  return (
     <Stack
       spacing={2}
       height={240}
       borderWidth="1px"
       borderRadius="lg"
-      w={{ sm: '100%', md: '600px' }}
+      w="100%"
       //height={{ sm: '400px', md: '20rem' }}
       direction={{ base: 'column', md: 'row' }}
       bg={useColorModeValue('white', 'gray.900')}
       boxShadow={'2xl'}
       padding={4}
-      onClick={() => navigate(`/callforpapers/${c4pid}`)}
+      onClick={() => navigate(`/callforpapers/${props.c4pid}`)}
     >
       <Stack
         flex={1}
@@ -61,13 +56,8 @@ const C4PCard = ({
         p={1}
         pt={2}
       >
-        <Heading
-          textAlign={'left'}
-          fontSize={'2xl'}
-          fontFamily={'body'}
-          px={3}
-        >
-          {eventName}
+        <Heading textAlign={'left'} fontSize={'2xl'} fontFamily={'body'} px={3}>
+          {props.eventName}
           <Badge ml="2" colorScheme="green">
             New
           </Badge>
@@ -78,16 +68,16 @@ const C4PCard = ({
           color={useColorModeValue('gray.700', 'gray.400')}
           px={3}
         >
-          {tittle}
+          {props.tittle}
         </Text>
 
-        <Flex alignItems='center'>
+        <Flex alignItems="center">
           <Circle size="30px" bg="#3483FA" color="white">
             <CalendarIcon />
           </Circle>
           <Box ml="3">
             <Text fontSize="sm" textAlign="center">
-              {date}
+              {props.date}
             </Text>
           </Box>
         </Flex>
