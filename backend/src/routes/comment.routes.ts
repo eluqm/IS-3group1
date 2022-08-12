@@ -7,7 +7,8 @@ const router = express.Router();
 
 router.get('/all',CommentController.getAllComments);
 router.get('/',AuthMiddleware.authenticate,CommentController.getUserComments);
-router.post('/',AuthMiddleware.authenticate,CommentController.createComment);
+router.get('/:idevent',CommentController.getEventComments);
+router.post('/:idevent',AuthMiddleware.authenticate,CommentController.createComment);
 router.delete('/:id',AuthMiddleware.authenticate,CommentController.deleteComment);
 router.patch('/:id',AuthMiddleware.authenticate,CommentController.editComment);
 
