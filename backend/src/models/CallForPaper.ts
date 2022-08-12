@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
 const CallForPaperSchema = new Schema(
   {
@@ -24,6 +24,9 @@ const CallForPaperSchema = new Schema(
     location: {
       type: String,
     },
+    filePath: {
+      type: String,
+    },
   },
   {
     versionKey: false,
@@ -31,4 +34,4 @@ const CallForPaperSchema = new Schema(
   }
 );
 
-export default model('CallForPaper', CallForPaperSchema);
+export default model("CallForPaper", CallForPaperSchema);
