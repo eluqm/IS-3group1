@@ -22,7 +22,7 @@ import {
   SimpleGrid
 } from '@chakra-ui/react';
 
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { BsGithub, BsLinkedin,BsGoogle } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
@@ -32,6 +32,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { TbLink,TbCalendarStats,TbCalendarTime } from "react-icons/tb";
 import { IoLocationOutline } from "react-icons/io5";
 import {MdFacebook} from 'react-icons/md';
+import ReactMarkdown from "react-markdown";
+import axios from "axios";
 
 import LogSignLayout from '../../layouts/LogSignLayout';
 
@@ -44,7 +46,7 @@ const papers = [
     date2:'10/05/24',
     url:'example link',
     location:'EEUU',
-    mdName: 'archivo md'  
+    /* mdName: 'archivo md'  */ 
   },
   {
     id: 1,
@@ -61,10 +63,21 @@ const papers = [
 const C4PPage = () => {
   const params = useParams();
   const idnum = Number(params.id);
+  let[contenido,setContenido]=useState("")
+  useEffect(()=>{
+    const fetchData=async()=>{
+      let response=await axios.get(
+        "https://raw.githubusercontent.com/ElizabethYasmin/PruebaMD/main/c4p001.md"
+      );
+      setContenido(response.data);
+    };
+    fetchData().catch(console.error);
+  })
   return(
     <LogSignLayout>
       <Box>
-        <Container maxW='container.lg' py='40'>
+        
+        <Container maxW='container.lg' py='39'>
           <SimpleGrid columns={1} spacing={4}>
             <Box bg='green.300' rounded='full'>
               <Text mx='4' my='2'>
@@ -138,6 +151,7 @@ const C4PPage = () => {
                 <Text>
                   {papers[idnum].mdName}
                 </Text>
+                <ReactMarkdown children={contenido}/>
                 {/*<MarkDown>
                   </MarkDown>*/}
               </Box>
