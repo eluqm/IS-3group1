@@ -20,13 +20,16 @@ import {
   StackDivider,
   Grid,
   GridItem,
+  Avatar,
+  textDecoration,
 } from '@chakra-ui/react';
 import { CalendarIcon } from '@chakra-ui/icons';
-
 
 //import components
 import Header from '../../components/Header';
 import C4PCard from '../../components/C4PCard';
+
+import CallForPapersLayout from '../../layouts/CallForPapersLayout';
 
 const papers = [
   {
@@ -53,198 +56,158 @@ const papers = [
   },
 ];
 
-import { useEffect } from 'react';
+const _topics = [
+  {
+    _id: '1',
+    name: 'Artificial Intelligence',
+    cant: 2,
+  },
+  {
+    _id: '2',
+    name: 'Computer vision & patterns',
+    cant: 3,
+  },
+];
+
+const _locations = [
+  {
+    _id: '1',
+    country: 'Perú',
+    imageUrl: 'http//domain.com/image/',
+  },
+  {
+    _id: '2',
+    country: 'Brasil',
+    imageUrl: 'http//domain.com/image/',
+  },
+];
+
+const _callforpapers = [
+  {
+    _id: 1,
+    title: 'IEEE BIG DATA SERVICE 2022',
+    eventUrl:
+      'https://www.call4paper.com/detail/event/FJHSPTEF31124032?v=subject',
+    topics: ['Databases & Information Systems'],
+    location: 'San Franciso, USA',
+    filePath: '/api/v1/files/c4p002.md',
+  },
+  {
+    _id: 2,
+    title: 'IEEE BIG DATA SERVICE 2022',
+    eventUrl:
+      'https://www.call4paper.com/detail/event/FJHSPTEF31124032?v=subject',
+    topics: ['Databases & Information Systems'],
+    location: 'San Franciso, USA',
+    filePath: '/api/v1/files/c4p002.md',
+  },
+];
+
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function CallForPapers() {
+  let [topics, setTopics] = useState(_topics);
+  let [locations, setLocations] = useState(_locations);
+  let [callforpapers, setCallForPapers] = useState(_callforpapers);
+
   useEffect(() => {
-    console.log(import.meta.env);
-  });
+    const fetchCallForPapers = async () => {
+      let response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/callforpapers`
+      );
+      setCallForPapers(response.data.callForPapers);
+    };
+
+    fetchCallForPapers();
+  }, []);
+
   return (
-    <Box className="App">
-      <Header />
-      <Container>
-        <Center>
-          <Tabs>
-            <TabList>
-              <Tab isDisabled>By subject</Tab>
-              <Tab isDisabled>By country</Tab>
-              <Tab isDisabled>By date</Tab>
-            </TabList>
-            {/* <TabPanels>
+    <CallForPapersLayout>
+      <div>
+        {/* For Top Navbar -> By */}
+        <Container>
+          <Center>
+            <Tabs>
+              <TabList>
+                <Tab isDisabled>By subject</Tab>
+                <Tab isDisabled>By country</Tab>
+                <Tab isDisabled>By date</Tab>
+              </TabList>
+              {/* <TabPanels>
                 <TabPanel>1</TabPanel>
                 <TabPanel>2</TabPanel>
                 <TabPanel>3</TabPanel>
               </TabPanels> */}
-          </Tabs>
-        </Center>
-      </Container>
+            </Tabs>
+          </Center>
+        </Container>
 
-      <Grid
-        templateAreas={`"header header"
-            "nav main"
-            "nav footer"`}
-        gridTemplateRows={'50px 1fr 30px'}
-        gridTemplateColumns={'650px 1fr'}
-        h="200px"
-        gap="1"
-        color="blackAlpha.700"
-        fontWeight="bold"
-      >
-        <GridItem pl="280" area={'nav'}>
-          <Box
-            maxW={'330px'}
-            w={'full'}
-            bg={useColorModeValue('white', 'gray.900')}
-            boxShadow={'2xl'}
-            rounded={'lg'}
-            p={6}
-            textAlign={'left'}
-          >
-            <Heading fontSize={'2xl'} fontFamily={'body'} pt={3} pb={6}>
-              Topic
+        {/* For Content */}
+        <Flex flexDirection="row" mx="10vw">
+          {/* For left navbar */}
+          <Box minW="25vw" boxShadow="2xl" rounded="lg" m="1rem" p="1rem">
+            <Heading pb={3} pt={3}>
+              Topics
             </Heading>
 
-            <Text fontWeight={600} color={'gray.500'} mb={4}>
-              Artificial Intelligence{' '}
-              <Link href={'#'} color={'blue.400'}>
-                {' '}
-                (2)
+            {topics.map((topic) => (
+              <Link href={'#'} key={topic._id}>
+                <Flex>
+                  <Text fontWeight={600} color={'gray.500'} mb={4}>
+                    {topic.name}
+                  </Text>
+                  <Text color={'blue.400'} ml="5px">{`(${topic.cant})`}</Text>
+                </Flex>
               </Link>
-              <Spacer />
-              Computer vision & patterns{' '}
-              <Link href={'#'} color={'blue.400'}>
-                {' '}
-                (5)
-              </Link>
-              <Spacer />
-              Software systems{' '}
-              <Link href={'#'} color={'blue.400'}>
-                {' '}
-                (10)
-              </Link>
-              <Spacer />
-              Robotics{' '}
-              <Link href={'#'} color={'blue.400'}>
-                {' '}
-                (7)
-              </Link>
-              <Spacer />
-            </Text>
+            ))}
 
-            <Heading fontSize={'2xl'} fontFamily={'body'} pt={3} pb={7}>
+            <Heading pb={3} pt={3}>
               Locations
             </Heading>
-
-            <HStack>
-              <Text
-                textAlign={'left'}
-                color={useColorModeValue('gray.700', 'gray.400')}
-              >
-                <Flex pb={5}>
-                  <Image
-                    borderRadius="full"
-                    boxSize="50px"
+            {locations.map((location) => (
+              <Link href={'#'} key={location._id}>
+                <Flex mb={2}>
+                  <Avatar
+                    name="Dan Abrahmov"
                     src="https://bit.ly/dan-abramov"
-                    flex={1}
-                    fontSize={'sm'}
-                    rounded={'full'}
-                    bg={'blue.400'}
-                    color={'white'}
-                    boxShadow={
-                      '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                    }
                   />
-                  <Center>
-                    <Text pl={3}>Peru</Text>
-                  </Center>
-                  <Spacer />
+                  <Text
+                    fontWeight={600}
+                    color={'gray.500'}
+                    mb={4}
+                    pt="12px"
+                    ml="12px"
+                  >
+                    {location.country}
+                  </Text>
                 </Flex>
-
-                <Flex pb={5}>
-                  <Image
-                    borderRadius="full"
-                    boxSize="50px"
-                    src="https://bit.ly/dan-abramov"
-                    flex={1}
-                    fontSize={'sm'}
-                    rounded={'full'}
-                    bg={'blue.400'}
-                    color={'white'}
-                    boxShadow={
-                      '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                    }
-                  />
-                  <Center>
-                    <Text pl={3}> Brazil </Text>
-                  </Center>
-                  <Spacer />
-                </Flex>
-
-                <Flex pb={5}>
-                  <Image
-                    borderRadius="full"
-                    boxSize="50px"
-                    src="https://bit.ly/dan-abramov"
-                    flex={1}
-                    fontSize={'sm'}
-                    rounded={'full'}
-                    bg={'blue.400'}
-                    color={'white'}
-                    boxShadow={
-                      '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                    }
-                  />
-                  <Center>
-                    <Text pl={3}> Venezuela</Text>
-                  </Center>
-                  <Spacer />
-                </Flex>
-
-                <Flex pb={5}>
-                  <Image
-                    borderRadius="full"
-                    boxSize="50px"
-                    src="https://bit.ly/dan-abramov"
-                    flex={1}
-                    fontSize={'sm'}
-                    rounded={'full'}
-                    bg={'blue.400'}
-                    color={'white'}
-                    boxShadow={
-                      '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                    }
-                  />
-                  <Center>
-                    <Text pl={3}> EEUU</Text>
-                  </Center>
-                  <Spacer />
-                </Flex>
-              </Text>
-            </HStack>
-          </Box>
-        </GridItem>
-
-        <GridItem pl="2" area={'main'}>
-          <VStack
-            divider={<StackDivider borderColor="gray.200" />}
-            spacing={1}
-            align="stretch"
-          >
-            {papers.map((it) => (
-              <Box pl="8" key={it.id}>
-                <C4PCard
-                  c4pid={it.id}
-                  eventName={it.eventName}
-                  tittle={it.tittle}
-                  date={it.date}
-                  mdName={it.mdName}
-                />
-              </Box>
+              </Link>
             ))}
-          </VStack>
-        </GridItem>
-      </Grid>
-    </Box>
+          </Box>
+
+          {/* For Items */}
+          <Box minW="45vw" m="1rem" p="1rem">
+            {callforpapers.map((c4p) => (
+              <Link
+                pl="8"
+                key={c4p._id}
+                mb={4}
+                _hover={{ textDecoration: 'none' }}
+              >
+                <C4PCard
+                  c4pid={c4p._id}
+                  eventName={c4p.title}
+                  tittle={c4p.eventUrl}
+                  date={`18-08-2022`}
+                  mdName={c4p.filePath}
+                />
+              </Link>
+            ))}
+          </Box>
+        </Flex>
+      </div>
+    </CallForPapersLayout>
   );
 }
 export default CallForPapers;

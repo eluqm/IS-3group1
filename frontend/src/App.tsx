@@ -8,7 +8,7 @@ import Dashboard from './admin/Dashboard';
 import Login from './user/routes/Login/Login';
 import Signup from './user/routes/SignUp/SignUp';
 import CallForPapers from './user/routes/CallForPapers/CallForPapers';
-import C4PPage from './user/routes/CallForPapers/C4PPage';
+import C4PPage from './user/routes/CallForPapers/CallForPaperPage';
 import { useEffect } from 'react';
 
 function App() {

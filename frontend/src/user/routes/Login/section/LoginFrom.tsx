@@ -47,7 +47,6 @@ const LoginFrom = () => {
   };
 
   const handleSubmit = (e: any) => {
-    console.log(import.meta.env);
     const loggin = async () => {
       let response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/login`,
@@ -56,7 +55,6 @@ const LoginFrom = () => {
           password: password,
         }
       );
-      console.log(response);
       setCookie('Token', response.data.token, { path: '/' });
       setCookie('User', response.data.user.name, { path: '/' });
     };
