@@ -20,19 +20,19 @@ import { motion, Variants } from "framer-motion";
 const description = [
     {
         id: 0,
-        des: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ratione, autem iusto architecto molestias quasi nihil! Soluta culpa perferendis, deserunt inventore voluptatibus reiciendis, iusto et quo quas impedit eos tenetur?',
+        des: 'Waqya combina de forma única una base de datos de Call for papers vinculados en Ciencia de la computación, donde los artículos se evalúan con criterios que incluyen la excelencia, la novedad y la importancia de la investigación o las ideas.',
     },
     {
         id: 1,
-        des: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ratione, autem iusto architecto molestias quasi nihil! Soluta culpa perferendis, deserunt inventore voluptatibus reiciendis, iusto et quo quas impedit eos tenetur?',
+        des: 'El campo de Ciencias de la computación ofrece varias disciplinas de investigación, donde podrán encontrar investigaciones sobre: Inteligencia Artificial, Ingeniería de software, Computación gráfica, entre otras.',
     },
     {
         id: 2,
-        des: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ratione, autem iusto architecto molestias quasi nihil! Soluta culpa perferendis, deserunt inventore voluptatibus reiciendis, iusto et quo quas impedit eos tenetur?',
+        des: 'El equipo de Waya se esfuerza diariamente en brindar los call for papers más relevantes, con la finalidad que nuestros usuarios esten actualizados en el campo de Ciencia de la computación',
     },
     {
         id: 3,
-        des: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ratione, autem iusto architecto molestias quasi nihil! Soluta culpa perferendis, deserunt inventore voluptatibus reiciendis, iusto et quo quas impedit eos tenetur?',
+        des: 'Waqya tiene la suerte de servir a las personas interesadas en el campo de Ciencia de la computación, mediante un canal de difusión que ofrece nuestra página web amigable para nuestros usuarios',
     }
 ]
 

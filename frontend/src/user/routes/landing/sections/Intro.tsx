@@ -22,7 +22,7 @@ const Intro = ({
 }) => {
     const navigate = useNavigate();
     const handleClick = () =>{
-        navigate('/login');
+        navigate('/callforpapers');
     };
 
     return(
@@ -61,7 +61,7 @@ const Intro = ({
                         color='whiteAlpha.800' 
                         fontSize='2xl' 
                     >
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit expedita inventore hic ex nisi, autem magnam facere necessitatibus, unde sed laborum soluta tenetur ab fugiat repellendus. Maxime amet architecto magnam?
+                        "WAQYA" es un canal de difusión de llamados a publicar (Call for papers), mediante el cual los usuarios podrán visualizar, comentar y agregar a favoritos los principales Call for papers (C4P) en seminarios, Conferencias, Workshops y Journals en los tópicos más relevantes del área de Ciencia de la Computación.
                     </Text>
                 </Box>
 
@@ -77,7 +77,7 @@ const Intro = ({
                         borderColor='green.900'
                         onClick={handleClick}
                     >
-                        Empezar ahora
+                        VER PAPERS
                     </Button>
                 </HStack>
 
