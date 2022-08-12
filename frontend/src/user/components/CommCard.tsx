@@ -30,10 +30,9 @@ const CommCard = ({
   return (
     <Box
       bg="linear-gradient(162deg, rgba(4,193,238,1) 38%, rgba(67,206,250,1) 57%)"
-      borderWidth="1px"
       borderRadius="lg"
-      borderColor="black.500"
-      boxShadow="lg"
+      borderColor="black.900"
+      boxShadow="xl"
       overflow="hidden"
       maxW="xl"
       px="2"
