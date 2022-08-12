@@ -1,5 +1,5 @@
 import {
-  Box, 
+  Box,
   Container,
   Flex,
   Spacer,
@@ -21,32 +21,52 @@ import {
   InputGroup,
   InputRightElement,
   useColorModeValue,
-  IconButton
-} from '@chakra-ui/react'
-import {MdFacebook} from 'react-icons/md';
-import { useState } from 'react';
+  IconButton,
+} from '@chakra-ui/react';
+import { MdFacebook } from 'react-icons/md';
+import { useEffect, useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { BsGithub } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 
+import axios from 'axios';
+import { useCookies, Cookies } from 'react-cookie';
 
 const LoginFrom = () => {
   const [showPassword, setShowPassword] = useState(false);
-  return(
-    <Flex
-      minH='100vh'
-      align='center'
-      justify='center'
-      bg='#f5f5f5'
-    >
-      <Stack 
-        direction={{ base: 'column', md: 'row' }} 
-        m='2'
-      >
-        <Box maxW='xl' m='1' pt='2'>
+  let [email, setEmail] = useState('');
+  let [password, setPassword] = useState('');
+  const [cookies, setCookie] = useCookies(['Token', 'User']);
+
+  const handleEmail = (e: any) => {
+    setEmail(e.target.value);
+  };
+  const handlePassword = (e: any) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e: any) => {
+    const loggin = async () => {
+      let response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/login`,
+        {
+          email: email,
+          password: password,
+        }
+      );
+      setCookie('Token', response.data.token, { path: '/' });
+      setCookie('User', response.data.user.name, { path: '/' });
+    };
+    loggin();
+  };
+
+  return (
+    <Flex minH="100vh" align="center" justify="center" bg="#f5f5f5">
+      <Stack direction={{ base: 'column', md: 'row' }} m="2">
+        <Box maxW="xl" m="1" pt="2">
           <Image
-            boxSize='full'
+            boxSize="full"
             alt={'Login Image'}
             objectFit={'cover'}
             src={
@@ -54,21 +74,16 @@ const LoginFrom = () => {
             }
           />
         </Box>
-        <Flex p='2' flex='1' align='center' justify='center'>
+        <Flex p="2" flex="1" align="center" justify="center">
           <Box
-            rounded='lg'
+            rounded="lg"
             bg={useColorModeValue('gray.50', 'gray.800')}
-            boxShadow='lg'
-            p='8'
+            boxShadow="lg"
+            p="8"
           >
-            <VStack 
-              spacing='1' 
-              align={['flex-start', 'center']} 
-              w='md' 
-              mb='10'
-            >
+            <VStack spacing="1" align={['flex-start', 'center']} w="md" mb="10">
               <Heading fontSize={'3xl'}>Ingresa con</Heading>
-              <Box my='2' pt='6'>
+              <Box my="2" pt="6">
                 <IconButton
                   aria-label="facebook"
                   variant="ghost"
@@ -76,7 +91,7 @@ const LoginFrom = () => {
                   isRound={true}
                   _hover={{ bg: '#0D74FF' }}
                   icon={<MdFacebook size="28px" />}
-                  />
+                />
                 <IconButton
                   aria-label="github"
                   variant="ghost"
@@ -95,27 +110,31 @@ const LoginFrom = () => {
                 />
               </Box>
             </VStack>
-            <Stack spacing='4'>
+            <Stack spacing="4">
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input type="email" onChange={handleEmail} />
               </FormControl>
               <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
-                  <Input type={showPassword ? 'text' : 'password'} />
-                  <InputRightElement h='full'>
+                  <Input
+                    type={showPassword ? 'text' : 'password'}
+                    onChange={handlePassword}
+                  />
+                  <InputRightElement h="full">
                     <Button
-                      variant='ghost'
+                      variant="ghost"
                       onClick={() =>
                         setShowPassword((showPassword) => !showPassword)
-                      }>
+                      }
+                    >
                       {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                     </Button>
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
-              <HStack w='full' justify='space-between' pb='8'>
+              <HStack w="full" justify="space-between" pb="8">
                 <Checkbox>Remember me.</Checkbox>
               </HStack>
               <Stack spacing={10} pt={2}>
@@ -127,31 +146,29 @@ const LoginFrom = () => {
                   _hover={{
                     bg: 'blue.500',
                   }}
+                  onClick={handleSubmit}
                 >
                   Log in
                 </Button>
               </Stack>
               <Stack pt={2} align={'center'}>
-                
                 <Flex>
-                  <Text mr='2'>
-                    ¿Nuevo en waqya?
+                  <Text mr="2">¿Nuevo en waqya?</Text>
+                  <Text color="blue.400">
+                    <Link to="/signup">Create una cuenta</Link>
                   </Text>
-                  <Text color='blue.400'>
-                    <Link to='/signup'>Create una cuenta</Link>
-                </Text>
                 </Flex>
 
-                <Text color='blue.400'>
-                  <Link to='/' >¿Olvidaste tu contraseña?</Link>
+                <Text color="blue.400">
+                  <Link to="/">¿Olvidaste tu contraseña?</Link>
                 </Text>
               </Stack>
             </Stack>
-          </Box>    
+          </Box>
         </Flex>
       </Stack>
     </Flex>
   );
-}
+};
 
 export default LoginFrom;
