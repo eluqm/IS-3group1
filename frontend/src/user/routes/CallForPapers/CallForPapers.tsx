@@ -23,6 +23,7 @@ import {
 } from '@chakra-ui/react';
 import { CalendarIcon } from '@chakra-ui/icons';
 
+
 //import components
 import Header from '../../components/Header';
 import C4PCard from '../../components/C4PCard';
@@ -59,7 +60,7 @@ function CallForPapers() {
     console.log(import.meta.env);
   });
   return (
-    <Box className="App" bg="#f5f5f5">
+    <Box className="App">
       <Header />
       <Container>
         <Center>
