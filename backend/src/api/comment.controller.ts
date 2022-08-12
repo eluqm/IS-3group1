@@ -27,6 +27,18 @@ class CommentController{
       catch(error){
         return res.status(500).json({ msg: error });
       }
+    };
+    
+    static getEventComments: RequestHandler = async (req, res) =>{
+      try{
+        const eventID = req.params.idevent;   
+        const comments = await Comment.find({eventid : eventID});
+        return res.status(200).json({comments});
+           
+      }
+      catch(error){
+        return res.status(500).json({ msg: error });
+      }
     }; 
 
     static createComment : RequestHandler = async (req, res) => {
@@ -34,7 +46,8 @@ class CommentController{
           if(!req.user){
             throw new Error("User doesn't exist");          
           }
-          req.body.userid = req.user._id; 
+          req.body.userid = req.user._id;
+          req.body.eventid = req.params.idevent; 
           const comment = await Comment.create(req.body);
           return res.status(201).json({ comment });
         } 
