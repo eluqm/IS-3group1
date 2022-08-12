@@ -31,26 +31,33 @@ const papers = [
   {
     id: 0,
     eventName: 'SIMBig 2022',
-    tittle: ' 9th International Conference on Information Management and Big Data.',
+    tittle:
+      ' 9th International Conference on Information Management and Big Data.',
     date: '10/04/22',
-    date2:'10/05/24',
-    url:'example link',
-    location:'EEUU',
-    mdName: 'archivo md'  
+    date2: '10/05/24',
+    url: 'example link',
+    location: 'EEUU',
+    mdName: 'archivo md',
   },
   {
     id: 1,
     eventName: 'SIMBig 2022',
-    tittle: ' 9th sdfsInternational Conference on Information Management and Big Data.',
+    tittle:
+      ' 9th sdfsInternational Conference on Information Management and Big Data.',
     date: '10/04/22',
-    date2:'10/05/24',
-    url:'example link',
-    location:'EEsdfUU',
-    mdName: 'archivo md'  
+    date2: '10/05/24',
+    url: 'example link',
+    location: 'EEsdfUU',
+    mdName: 'archivo md',
   },
 ];
 
+import { useEffect } from 'react';
+
 function CallForPapers() {
+  useEffect(() => {
+    console.log(import.meta.env);
+  });
   return (
     <Box className="App" bg="#f5f5f5">
       <Header />
@@ -222,19 +229,17 @@ function CallForPapers() {
             spacing={1}
             align="stretch"
           >
-            {
-              papers.map(it => (
-                <Box pl='8' key={it.id}>
-                  <C4PCard
-                    c4pid={it.id}
-                    eventName={it.eventName}
-                    tittle={it.tittle}
-                    date={it.date}
-                    mdName={it.mdName}
-                  />
-                </Box>
-              ))
-            }
+            {papers.map((it) => (
+              <Box pl="8" key={it.id}>
+                <C4PCard
+                  c4pid={it.id}
+                  eventName={it.eventName}
+                  tittle={it.tittle}
+                  date={it.date}
+                  mdName={it.mdName}
+                />
+              </Box>
+            ))}
           </VStack>
         </GridItem>
       </Grid>
