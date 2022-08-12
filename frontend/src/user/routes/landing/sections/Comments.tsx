@@ -13,7 +13,7 @@ import {
     VStack,
     SimpleGrid
 } from '@chakra-ui/react'
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import CommCard from '../../../components/CommCard';
 import { motion, Variants } from "framer-motion";
 
@@ -61,16 +61,30 @@ const Comments = ({
 }:{
     ObjAnima: Variants
 }) => {
+
+    let [usercom,setUsercom] = useState([
+        {
+            id:0,
+            comment: '',
+            mail: '',
+            date: '',
+        }
+    ]);
+
+    useEffect(()=>{
+        setUsercom(usercom = commentaries);
+    },[]);
+
     return(
         <Box 
-            bg='linear-gradient(148deg, rgba(110,255,114,1) 0%, rgba(0,221,62,1) 31%, rgba(7,191,0,1) 100%)'
+        bgGradient='linear(to-l, facebook.50, facebook.100)'
             as={motion.div}
             initial='offscreen'
             whileInView='onscreen'
             viewport={{once:true, amount:0.8}}
         >
             <VStack 
-                color='blue.400' 
+                color='green.400' 
                 textAlign='center' 
                 spacing='10'  
                 pt='20' pb='20'
@@ -95,7 +109,7 @@ const Comments = ({
                     variants={ObjAnima}
                 >
                     {
-                        commentaries.map(it => (
+                        usercom.map(it => (
                             <Box key={it.id}>
                                 <CommCard 
                                     comment={it.comment} 

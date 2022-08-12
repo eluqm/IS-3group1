@@ -12,7 +12,17 @@ import {
     Text,
     VStack,
     HStack,
-    SimpleGrid
+    SimpleGrid,
+    useDisclosure,
+    Modal,
+    ModalOverlay,
+    ModalCloseButton,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    FormControl,
+    FormLabel,
+    ModalFooter
 } from '@chakra-ui/react'
 import React from 'react';
 import { motion, Variants } from "framer-motion";
@@ -26,8 +36,13 @@ const JoinUs = ({
     
     const navigate = useNavigate();
     const handleClick = () =>{
-        navigate('/signup');
+        navigate('/register');
     };
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const initialRef = React.useRef(null)
+    const finalRef = React.useRef(null)
+
 
     return(
         <Box 
@@ -75,12 +90,43 @@ const JoinUs = ({
                             Recibe news letter
                         </Heading>
                         <Text color='gray.200'>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero quibusdam dolor vitae hic facere placeat modi quis ea eius expedita maiores, dolorem minus neque, ipsa velit laudantium facilis nemo voluptatem!
+                            Entérese de los últimos Call for papers (C4P) en seminarios, Conferencias, Workshops y Journals relacionados en Ciencias de la computación del día. El equipo de Waqya te informará en nuestro boletín de Call For Papers.
                         </Text>
                         <Box mt='20'>
-                            <Button colorScheme='red' size='md'>
+                            <Button colorScheme='red' size='md' onClick={onOpen}>
                                 Suscribete
                             </Button>
+                            <Modal
+                                initialFocusRef={initialRef}
+                                finalFocusRef={finalRef}
+                                isOpen={isOpen}
+                                onClose={onClose}
+                            >
+                                <ModalOverlay />
+                                <ModalContent>
+                                <ModalHeader>Más de 100 C4P se encuentran en nuestro canal de difusión</ModalHeader>
+                                <ModalCloseButton />
+                                <ModalBody pb={6}>
+                                    <FormControl>
+                                    <FormLabel>Suscríbase a nuestro boletín de call for papers de Waqya</FormLabel>
+                                    <Flex mx='1'>
+                                        <Input 
+                                            ref={initialRef} 
+                                            placeholder='correo' 
+                                            borderRadius="full"
+                                        />
+                                        <Button colorScheme='blue'  mx='2'>
+                                            Save
+                                        </Button>
+                                    </Flex>
+                                    </FormControl>
+                                </ModalBody>
+
+                                <ModalFooter>
+                                    <Button onClick={onClose}>Cancel</Button>
+                                </ModalFooter>
+                                </ModalContent>
+                            </Modal>
                         </Box>
                     </Box>
                     
@@ -93,7 +139,7 @@ const JoinUs = ({
                             Crea tu cuenta
                         </Heading>
                         <Text color='gray.200'>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit optio, magni perspiciatis provident accusantium cumque tempora in id quae, recusandae ducimus minima doloremque, similique animi placeat voluptatibus consequuntur exercitationem earum.
+                        Puedes crear una cuenta para acceder gratuitamente a la comunidad de Waqya, donde podrás ver y dar tu opinión en diferentes Call for papers (C4P) más relevantes en la área de Ciencia de la Computación.
                         </Text>
                         <Box mt='20'>
                             <Button 

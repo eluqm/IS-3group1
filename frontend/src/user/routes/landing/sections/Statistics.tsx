@@ -13,7 +13,7 @@ import {
     VStack,
     SimpleGrid
 } from '@chakra-ui/react'
-import React from 'react';
+import React, {useState} from 'react';
 import { motion, Variants } from "framer-motion";
 
 
@@ -22,9 +22,19 @@ const Statistics = ({
 }:{
     ObjAnima: Variants
 }) => {
+    function getRandomInt(min:any, max:any) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    let [numJourn] = useState(getRandomInt(200,900)),
+    [numCountr] = useState(getRandomInt(5,200)),
+    [numEvents] = useState(getRandomInt(200,900));
+
     return(
         <Box
-            bg='linear-gradient(325deg, rgba(18,4,255,1) 20%, rgba(41,41,219,1) 57%, rgba(0,123,235,1) 95%)'
+            bgGradient='linear(to-l, facebook.100, facebook.200)'
             as={motion.div}
             initial='offscreen'
             whileInView='onscreen'
@@ -57,7 +67,7 @@ const Statistics = ({
                     <Box>
                         <Container maxW='xl' mr='4'>
                             <Text fontSize='6xl' color='white'>
-                                +100
+                                +{numJourn}
                             </Text>
                             <Text fontSize='3xl' color='green.300'>
                                 Journals
@@ -67,7 +77,7 @@ const Statistics = ({
                     <Box>
                         <Container maxW='xl' ml='2'>
                             <Text fontSize='6xl' color='white'>
-                                +90
+                                +{numEvents}
                             </Text>
                             <Text fontSize='3xl' color='green.300'>
                                 Eventos
@@ -81,7 +91,7 @@ const Statistics = ({
                 >
                     <Container maxW='xl' ml='4'>
                         <Text fontSize='6xl' color='white'>
-                            +5
+                            +{numCountr}
                         </Text>
                         <Text fontSize='3xl' color='green.300'>
                             Paises
