@@ -20,6 +20,17 @@ class UserController {
     }
   };
 
+  static getLoggedUser: RequestHandler = async (req, res) => {
+    try {
+      if (!req.user)
+        throw new Error('Something went wrong');
+      const userFound = await User.findById(req.user._id).select('-password');
+      return res.json(userFound);
+    } catch (error) {
+      return res.json(error);
+    }
+  };
+
   static createUser: RequestHandler = async (req, res) => {
     try {
       // verify repeated elements
