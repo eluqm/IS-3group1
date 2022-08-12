@@ -1,5 +1,5 @@
 import express from 'express';
-import CallForPaperController from '../api/evento.controller';
+import CallForPaperController from '../api/CallForPaper.controller';
 import AuthMiddleware from '../middleware/auth.middleware';
 import { Privilege } from '../models/User';
 
