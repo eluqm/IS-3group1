@@ -48,8 +48,9 @@ const Intro = ({
                     fontSize='6xl' 
                     maxW='xl'
                     borderColor='blackAlpha.900'
+                    fontStyle="italic"
                 >
-                    CALL FOR PAPERS
+                    _Call for papers
                 </Heading>
                 
                 <Box 

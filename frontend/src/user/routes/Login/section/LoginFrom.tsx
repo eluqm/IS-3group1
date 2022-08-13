@@ -28,7 +28,7 @@ import { useEffect, useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { BsGithub } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { useCookies, Cookies } from 'react-cookie';
@@ -38,6 +38,7 @@ const LoginFrom = () => {
   let [email, setEmail] = useState('');
   let [password, setPassword] = useState('');
   const [cookies, setCookie] = useCookies(['Token', 'User']);
+  const navigate = useNavigate();
 
   const handleEmail = (e: any) => {
     setEmail(e.target.value);
@@ -57,6 +58,9 @@ const LoginFrom = () => {
       );
       setCookie('Token', response.data.token, { path: '/' });
       setCookie('User', response.data.user.name, { path: '/' });
+
+      //navigate to home page
+      navigate('/callforpapers', { replace: true });
     };
     loggin();
   };
