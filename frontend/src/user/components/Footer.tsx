@@ -57,6 +57,9 @@ const Footer = () => {
         <Link as={ReachLink} to="/callforpapers">
           C4Ps
         </Link>
+        <Link as={ReachLink} to="/login">
+          Login
+        </Link>
       </Flex>
     </Flex>
   );
