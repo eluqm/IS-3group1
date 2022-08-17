@@ -26,8 +26,6 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { BsGithub } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
-
-// react hook form
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import axios from 'axios';
@@ -46,6 +44,7 @@ const LoginForm = () => {
 
   // cookies
   const [cookies, setCookie] = useCookies(['Token', 'User']);
+  const navigate = useNavigate();
 
   // navigate
   const navigate = useNavigate();
