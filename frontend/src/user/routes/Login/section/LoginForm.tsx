@@ -27,7 +27,6 @@ import { BsGithub } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
-
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
@@ -44,7 +43,6 @@ const LoginForm = () => {
 
   // cookies
   const [cookies, setCookie] = useCookies(['Token', 'User']);
-  const navigate = useNavigate();
 
   // navigate
   const navigate = useNavigate();
@@ -175,7 +173,7 @@ const LoginForm = () => {
                   <Flex>
                     <Text mr="2">¿Nuevo en waqya?</Text>
                     <Text color="blue.400">
-                      <Link to="/signup">Create una cuenta</Link>
+                      <Link to="/register">Create una cuenta</Link>
                     </Text>
                   </Flex>
 

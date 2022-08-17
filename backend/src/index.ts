@@ -1,11 +1,11 @@
-import app from './server';
-import mongoose, { ConnectOptions } from 'mongoose';
-import config from './config/config';
+import app from "./server";
+import mongoose, { ConnectOptions } from "mongoose";
+import config from "./config/config";
 
 async function main() {
   const port = config.SERVER_PORT;
   const stringConnection =
-    config.MONGO_URI === 'undefined'
+    config.MONGO_URI === "undefined"
       ? `mongodb://${config.MONGO_HOST}/${config.MONGO_DATABASE}`
       : config.MONGO_URI;
 
@@ -32,4 +32,4 @@ main()
   .catch(console.error)
   .finally(() => {
     // conn.disconnect()
-});
+  });

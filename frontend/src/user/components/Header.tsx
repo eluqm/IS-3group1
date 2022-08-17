@@ -1,6 +1,5 @@
 import {
   Link,
-  Container,
   Flex,
   Box,
   Spacer,
@@ -18,27 +17,38 @@ import {
   Heading,
 } from '@chakra-ui/react';
 
-
+// Icons
 import { GiExitDoor } from 'react-icons/gi';
-import { FiUser,FiLogIn } from 'react-icons/fi';
+import { FiUser, FiLogIn } from 'react-icons/fi';
 import { FaFilter, FaSearch } from 'react-icons/fa';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 
 import { Link as ReachLink, useNavigate } from 'react-router-dom';
 
-
 import { useCookies } from 'react-cookie';
-import { useEffect } from 'react';
+import { useState } from 'react';
 
 const Header = () => {
+  const [searchValue, setSearchValue] = useState('');
+
   const [cookies, setCookie, removeCookie] = useCookies(['Token', 'User']);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    removeCookie('Token');
-    removeCookie('User');
+    removeCookie('Token', { path: '/' });
+    removeCookie('User', { path: '/' });
 
     navigate('/callforpapers', { replace: true });
+  };
+
+  const handleSearchChange = (e: any) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleSearchSubmit = () => {
+    if (searchValue !== '') {
+      navigate(`/search/${searchValue}`);
+    }
   };
 
   return (
@@ -64,12 +74,14 @@ const Header = () => {
             color="#9c98e7"
             borderLeftRadius="full"
             minW="30vw"
+            onChange={handleSearchChange}
           />
           <Button leftIcon={<FaFilter />} borderRadius="0" colorScheme="teal" />
           <Button
             leftIcon={<FaSearch />}
             borderRightRadius="full"
             colorScheme="blue"
+            onClick={handleSearchSubmit}
           >
             Buscar
           </Button>

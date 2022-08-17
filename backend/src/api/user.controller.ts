@@ -1,5 +1,5 @@
-import { RequestHandler } from 'express';
-import User from '../models/User';
+import { RequestHandler } from "express";
+import User from "../models/User";
 
 class UserController {
   static getUsers: RequestHandler = async (req, res) => {
@@ -58,11 +58,11 @@ class UserController {
       const userDeleted = await User.findByIdAndDelete(userID);
       if (!userDeleted)
         return res.status(404).json({ msg: `No User with id: ${userID}` });
-      return res.status(200).json(userDeleted);      
+      return res.status(200).json(userDeleted);
     } catch (error) {
       return res.json(error);
     }
-  }
+  };
 
   static updateUser: RequestHandler = async (req, res) => {
     try {
@@ -74,7 +74,18 @@ class UserController {
     } catch (error) {
       return res.status(500).json({ msg: error });
     }
-  }
+  };
+
+  static getProfile: RequestHandler = async (req, res) => {
+    try {
+      if (!req.user) {
+        throw new Error("User doesn't exist");
+      }
+      return res.status(200).json(req.user);
+    } catch (error) {
+      return res.status(500).json({ msg: error });
+    }
+  };
 }
 
 export default UserController;

@@ -15,9 +15,31 @@ import {
 import Layout from '../../layouts/Layout';
 
 import { MdEmail } from 'react-icons/md';
-import { FaUniversity,FaSave } from 'react-icons/fa';
+import { FaUniversity, FaSave } from 'react-icons/fa';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 const Profile = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(['Token', 'User']);
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      let headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${cookies.Token}`,
+      };
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/utils/profile`,
+        {
+          headers: headers,
+        }
+      );
+      setUser(response.data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <Layout>
       <Flex justify="center">
@@ -40,16 +62,16 @@ const Profile = () => {
 
           <Flex direction="column" align="center">
             <Text fontSize="xl" fontWeight="bold">
-              Joel Perca
+              {`${user.name} ${user.lastName}`}
             </Text>
             <Text fontSize="md" fontWeight="bold" color="gray.400">
-              @jperca
+              @{user.username}
             </Text>
           </Flex>
 
           <Flex alignItems="center" w="100%">
             <Text color="gray.700" fontWeight="semibold">
-              jperca@unsa.edu.pe
+              {user.email}
             </Text>
             <Spacer />
             <MdEmail size="1.5em" />
@@ -69,16 +91,16 @@ const Profile = () => {
             <HStack pt={5}>
               <FormControl>
                 <FormLabel>Nombres</FormLabel>
-                <Input type="text" defaultValue='Joel Cristian' />
+                <Input type="text" defaultValue={user.name} />
               </FormControl>
               <FormControl>
                 <FormLabel>Apellidos</FormLabel>
-                <Input type="text" />
+                <Input type="text" defaultValue={user.lastName} />
               </FormControl>
             </HStack>
             <FormControl mt={3}>
               <FormLabel>Correo</FormLabel>
-              <Input type="email" />
+              <Input type="email" defaultValue={user.email} />
             </FormControl>
             <FormControl mt={3}>
               <FormLabel>Universidad</FormLabel>
@@ -88,11 +110,7 @@ const Profile = () => {
               <FormLabel>Ocupación</FormLabel>
               <Input type="text" />
             </FormControl>
-            <Button
-              mt={4}
-              leftIcon={<FaSave/>}
-              colorScheme='green'
-            >
+            <Button mt={4} leftIcon={<FaSave />} colorScheme="green">
               Guardar
             </Button>
           </form>

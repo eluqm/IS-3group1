@@ -6,6 +6,9 @@ const CallForPaperSchema = new Schema(
       type: String,
       required: true,
     },
+    eventName: {
+      type: String,
+    },
     eventUrl: {
       type: String,
     },

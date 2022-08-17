@@ -8,6 +8,8 @@ import callforpapers from "./routes/callforpaper.routes";
 import userRoutes from "./routes/user.routes";
 import authRoutes from "./routes/auth.routes";
 import commentRoutes from "./routes/comment.routes";
+import searchRoutes from "./routes/search.routes";
+import utilsRoutes from "./routes/utils.routes";
 
 //express intance and settings
 const app = express();
@@ -23,11 +25,15 @@ app.use("/api/v1/callforpapers", callforpapers);
 
 app.use("/api/v1/users", userRoutes);
 
+app.use("/api/v1/utils", utilsRoutes);
+
 app.use("/api/v1/auth", authRoutes);
 
 app.use("/api/v1/comment", commentRoutes);
 
 app.use("/api/v1/auth", authRoutes);
+
+app.use("/api/v1/search", searchRoutes);
 
 app.use("/api/v1/", (req, res) => {
   res.json({ msg: "Welcome to Waqya API" });

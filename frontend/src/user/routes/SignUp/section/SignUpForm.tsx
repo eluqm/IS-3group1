@@ -17,7 +17,6 @@ import {
   VStack,
   Link,
   FormErrorMessage,
-  FormHelperText,
 } from '@chakra-ui/react';
 
 import { MdFacebook } from 'react-icons/md';
@@ -26,8 +25,11 @@ import { FcGoogle } from 'react-icons/fc';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 import { useState } from 'react';
-
 import { useForm } from 'react-hook-form';
+
+import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import { Link as ReachLink, useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,14 +39,26 @@ const SignUpForm = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  function onSubmit(values: any) {
-    return new Promise((resolve: any) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve();
-      }, 3000);
-    });
-  }
+  // cookies
+  const [cookies, setCookie] = useCookies(['Token', 'User']);
+
+  const navigate = useNavigate();
+
+  const onSubmit = (values: any) => {
+    const signUp = async () => {
+      let response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/register`,
+        { ...values }
+      );
+      setCookie('Token', response.data.token, { path: '/' });
+      setCookie('User', response.data.user.name, { path: '/' });
+
+      //navigate to home page
+      navigate('/user/profile', { replace: true });
+    };
+
+    signUp();
+  };
   return (
     <Flex align="center" justify="center" py={8}>
       <Stack direction={{ base: 'column', md: 'row' }} m="2">
@@ -98,7 +112,7 @@ const SignUpForm = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <HStack>
                 <Box>
-                  <FormControl isInvalid={errors.name}>
+                  <FormControl isInvalid={errors.name} isRequired>
                     <FormLabel htmlFor="name">Nombres</FormLabel>
                     <Input
                       type="text"
@@ -115,13 +129,13 @@ const SignUpForm = () => {
                   </FormControl>
                 </Box>
                 <Box>
-                  <FormControl isInvalid={errors.name}>
-                    <FormLabel htmlFor="lastname">Apellidos</FormLabel>
+                  <FormControl isInvalid={errors.name} isRequired>
+                    <FormLabel htmlFor="lastName">Apellidos</FormLabel>
                     <Input
                       type="text"
                       placeholder="Apellidos"
-                      id="lastname"
-                      {...register('lastname', {
+                      id="lastName"
+                      {...register('lastName', {
                         required: 'Esta informacion es requerida',
                         minLength: { value: 4, message: 'Longitud minima 4' },
                       })}
@@ -132,6 +146,15 @@ const SignUpForm = () => {
                   </FormControl>
                 </Box>
               </HStack>
+              <FormControl isRequired>
+                <FormLabel>Username</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Username"
+                  {...register('username')}
+                />
+              </FormControl>
+
               <FormControl id="email" isRequired>
                 <FormLabel>Correo electrónico</FormLabel>
                 <Input
@@ -181,7 +204,10 @@ const SignUpForm = () => {
             </form>
             <Stack pt={6}>
               <Text align={'center'}>
-                Ya tienes una cuenta ? <Link color={'blue.400'}>Login</Link>
+                Ya tienes una cuenta ?{' '}
+                <Link as={ReachLink} to="/login" color={'blue.400'}>
+                  Login
+                </Link>
               </Text>
             </Stack>
           </Box>

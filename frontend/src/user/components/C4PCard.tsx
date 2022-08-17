@@ -1,34 +1,22 @@
 import {
   Heading,
   Box,
-  Center,
   Text,
-  HStack,
-  VStack,
-  Link,
   useColorModeValue,
-  Spacer,
-  Image,
   Flex,
   Stack,
-  Container,
   Badge,
   Circle,
-  Tab,
-  Tabs,
-  TabList,
-  StackDivider,
-  Grid,
-  GridItem,
 } from '@chakra-ui/react';
 import { CalendarIcon } from '@chakra-ui/icons';
 import { useParams, useNavigate } from 'react-router-dom';
 
 interface Props {
-  c4pid: number;
+  c4pid: string;
   eventName: string;
   tittle: string;
   date: string;
+  topics?: [string];
   mdName: string;
 }
 
@@ -38,11 +26,9 @@ const C4PCard = (props: Props) => {
   return (
     <Stack
       spacing={2}
-      height={240}
       borderWidth="1px"
       borderRadius="lg"
       w="100%"
-      //height={{ sm: '400px', md: '20rem' }}
       direction={{ base: 'column', md: 'row' }}
       bg={useColorModeValue('white', 'gray.900')}
       boxShadow={'2xl'}
@@ -53,10 +39,10 @@ const C4PCard = (props: Props) => {
         flex={1}
         flexDirection="column"
         justifyContent="center"
-        p={1}
-        pt={2}
+        py={2}
+        px={3}
       >
-        <Heading textAlign={'left'} fontSize={'2xl'} fontFamily={'body'} px={3}>
+        <Heading textAlign={'left'} fontSize={'2xl'} fontFamily={'body'}>
           {props.eventName}
           <Badge ml="2" colorScheme="green">
             New
@@ -66,7 +52,6 @@ const C4PCard = (props: Props) => {
         <Text
           textAlign={'left'}
           color={useColorModeValue('gray.700', 'gray.400')}
-          px={3}
         >
           {props.tittle}
         </Text>
@@ -80,6 +65,13 @@ const C4PCard = (props: Props) => {
               {props.date}
             </Text>
           </Box>
+        </Flex>
+        <Flex>
+          {props.topics?.map((topic, index) => (
+            <Badge key={index} rounded="full" colorScheme="purple" mr={1}>
+              {topic}
+            </Badge>
+          ))}
         </Flex>
       </Stack>
     </Stack>
