@@ -1,66 +1,46 @@
 import {
   Flex,
   Box,
-  FormControl,
-  FormLabel,
-  Input,
-  InputGroup,
-  HStack,
-  InputRightElement,
-  Stack,
-  Button,
   Heading,
-  Text,
-  useColorModeValue,
   IconButton,
-  Image,
-  VStack,
   Link,
-  FormErrorMessage,
-  FormHelperText,
+  Text,
   Container,
   SimpleGrid,
 } from '@chakra-ui/react';
 
 import { useState, useEffect } from 'react';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { BsGithub, BsLinkedin, BsGoogle } from 'react-icons/bs';
-import { FcGoogle } from 'react-icons/fc';
-import { useForm } from 'react-hook-form';
 import { FaRegShareSquare } from 'react-icons/fa';
 import { useParams, useNavigate } from 'react-router-dom';
 import { TbLink, TbCalendarStats, TbCalendarTime } from 'react-icons/tb';
 import { IoLocationOutline } from 'react-icons/io5';
 import { MdFacebook } from 'react-icons/md';
+
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
 import axios from 'axios';
 
 import LogSignLayout from '../../layouts/LogSignLayout';
+import Comments from './section/Comments';
 
 interface ICall4Paper {
-  _id: String;
-  title: String;
-  eventUrl: String;
-  topics: Array<String>;
-  location: String;
-  filePath: String;
+  _id: string;
+  title: string;
+  eventUrl: string;
+  topics: Array<string>;
+  location: string;
+  filePath: string;
 }
 
-const _call4paper = {
-  _id: '1',
-  title: 'IEEE BIG DATA SERVICE 2022',
-  eventUrl:
-    'https://www.call4paper.com/detail/event/FJHSPTEF31124032?v=subject',
-  topics: ['Databases & Information Systems'],
-  location: 'San Franciso, USA',
-  filePath: '/api/v1/files/c4p002.md',
-};
+import './CallForPaperPage.css';
 
 const C4PPage = () => {
   const params = useParams();
 
   let [contenido, setContenido] = useState('');
-  let [call4paper, setCall4paper] = useState<ICall4Paper>(_call4paper);
+  let [call4paper, setCall4paper] = useState<ICall4Paper>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,32 +61,36 @@ const C4PPage = () => {
   return (
     <LogSignLayout>
       <Box>
-        <Container maxW="container.lg" py="39">
+        <Container maxW="container.lg" py="39px">
           <SimpleGrid columns={1} spacing={4}>
             <Box bg="green.300" rounded="full">
-              <Text mx="4" my="2">
+              <Heading size="lg" mx="4" my="2" p={2}>
                 {call4paper.title}
-              </Text>
+              </Heading>
             </Box>
 
             <Box bg="tomato" rounded="xl" background="gray.200">
               <Box mx="4" my="2">
-                <Flex alignItems="center" mb="2">
-                  <TbLink size="28px" />
-                  <Text mx="2">{call4paper.eventUrl}</Text>
-                </Flex>
-                <Flex alignItems="center" mb="2">
-                  <TbCalendarStats size="28px" />
-                  <Text mx="2">{'12-08-2022'}</Text>
-                </Flex>
-                <Flex alignItems="center" mb="2">
-                  <TbCalendarTime size="28px" />
-                  <Text mx="2">{'12-08-2022'}</Text>
-                </Flex>
-                <Flex alignItems="center" mb="2">
-                  <IoLocationOutline size="28px" />
-                  <Text mx="2">{call4paper.location}</Text>
-                </Flex>
+                <Box pl={4} pt={4}>
+                  <Flex alignItems="center" mb="2">
+                    <TbCalendarStats size="28px" />
+                    <Text mx="2">{'12-08-2022'}</Text>
+                  </Flex>
+                  <Flex alignItems="center" mb="2">
+                    <TbCalendarTime size="28px" />
+                    <Text mx="2">{'12-08-2022'}</Text>
+                  </Flex>
+                  <Flex alignItems="center" mb="2">
+                    <IoLocationOutline size="28px" />
+                    <Text mx="2">{call4paper.location}</Text>
+                  </Flex>
+                  <Flex alignItems="center" mb="2">
+                    <TbLink size="28px" />
+                    <Link href={call4paper.eventUrl} mx="2" isExternal>
+                      Url del evento
+                    </Link>
+                  </Flex>
+                </Box>
 
                 <Flex mx="4" alignItems="center">
                   <IconButton
@@ -143,12 +127,19 @@ const C4PPage = () => {
                   />
                 </Flex>
               </Box>
-              <Box mx="6" my="4">
-                <Text>{call4paper.filePath}</Text>
-                <ReactMarkdown children={contenido} />
+              <Box mx={10} my={5}>
+                <div className="initial">
+                  <ReactMarkdown
+                    children={contenido}
+                    remarkPlugins={[remarkGfm]}
+                  />
+                </div>
               </Box>
             </Box>
           </SimpleGrid>
+          <Flex>
+            <Comments c4pId={call4paper._id} />
+          </Flex>
         </Container>
       </Box>
     </LogSignLayout>

@@ -14,7 +14,6 @@ import {
 
 //import components
 import C4PCard from '../../components/C4PCard';
-
 import CallForPapersLayout from '../../layouts/CallForPapersLayout';
 
 const _topics = [
@@ -56,22 +55,24 @@ interface ICallForPaper {
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-function CallForPapers() {
+function SearchCallForPapers() {
   let [topics, setTopics] = useState(_topics);
   let [locations, setLocations] = useState(_locations);
   let [callforpapers, setCallForPapers] = useState<[ICallForPaper]>([]);
+  let searchQuery = useParams();
 
   useEffect(() => {
     const fetchCallForPapers = async () => {
       let response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/callforpapers`
+        `${import.meta.env.VITE_API_URL}/search?search=${searchQuery.search}`
       );
-      setCallForPapers(response.data.callForPapers);
+      setCallForPapers(response.data);
     };
 
     fetchCallForPapers();
-  }, []);
+  }, [callforpapers]);
 
   return (
     <CallForPapersLayout>
@@ -157,4 +158,4 @@ function CallForPapers() {
     </CallForPapersLayout>
   );
 }
-export default CallForPapers;
+export default SearchCallForPapers;

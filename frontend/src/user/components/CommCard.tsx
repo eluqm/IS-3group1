@@ -1,32 +1,14 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Spacer,
-  Grid,
-  GridItem,
-  Image,
-  Button,
-  ButtonGroup,
-  Text,
-  HStack,
-  VStack,
-  Avatar,
-  Badge,
-  SimpleGrid,
-} from '@chakra-ui/react';
+import { Box, Text, Flex, Avatar, Badge } from '@chakra-ui/react';
 import prof from '../../img/profile.jpg';
 import { motion } from 'framer-motion';
 
-const CommCard = ({
-  comment,
-  date,
-  mail,
-}: {
+interface IProps {
   comment: string;
   date: string;
   mail: string;
-}) => {
+}
+
+const CommCard = (props: IProps) => {
   return (
     <Box
       bg="linear-gradient(162deg, rgba(4,193,238,1) 38%, rgba(67,206,250,1) 57%)"
@@ -58,7 +40,7 @@ const CommCard = ({
             colorScheme="teal"
             textTransform="uppercase"
           >
-            {mail}
+            {props.mail}
           </Badge>
 
           <Box
@@ -68,7 +50,7 @@ const CommCard = ({
             textAlign="initial"
             ml="2"
           >
-            {date}
+            {props.date}
           </Box>
         </Box>
       </Flex>
@@ -80,7 +62,7 @@ const CommCard = ({
         fontWeight="semibold"
         as="h4"
       >
-        <Text>{comment}</Text>
+        <Text>{props.comment}</Text>
       </Box>
     </Box>
   );

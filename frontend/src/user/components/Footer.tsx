@@ -1,16 +1,4 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Spacer,
-  Grid,
-  GridItem,
-  Input,
-  Button,
-  ButtonGroup,
-  Text,
-  Link,
-} from '@chakra-ui/react';
+import { Box, Flex, Link } from '@chakra-ui/react';
 
 import { Link as ReachLink } from 'react-router-dom';
 
@@ -56,6 +44,9 @@ const Footer = () => {
       <Flex>
         <Link as={ReachLink} to="/callforpapers">
           C4Ps
+        </Link>
+        <Link as={ReachLink} to="/login">
+          Login
         </Link>
       </Flex>
     </Flex>
