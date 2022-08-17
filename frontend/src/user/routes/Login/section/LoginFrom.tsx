@@ -1,17 +1,13 @@
+import { useState } from 'react';
+
 import {
   Box,
-  Container,
   Flex,
-  Spacer,
-  Grid,
-  GridItem,
   Image,
   Button,
-  ButtonGroup,
   Text,
   Heading,
   HStack,
-  SimpleGrid,
   Stack,
   FormControl,
   FormLabel,
@@ -23,31 +19,41 @@ import {
   useColorModeValue,
   IconButton,
 } from '@chakra-ui/react';
+
+// icons
 import { MdFacebook } from 'react-icons/md';
-import { useEffect, useState } from 'react';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { BsGithub } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 import axios from 'axios';
-import { useCookies, Cookies } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 
-const LoginFrom = () => {
+interface IFormLogin {
+  email: String;
+  password: String;
+}
+
+const LoginForm = () => {
+  // states
   const [showPassword, setShowPassword] = useState(false);
   let [email, setEmail] = useState('');
   let [password, setPassword] = useState('');
+
+  // cookies
   const [cookies, setCookie] = useCookies(['Token', 'User']);
   const navigate = useNavigate();
 
-  const handleEmail = (e: any) => {
-    setEmail(e.target.value);
-  };
-  const handlePassword = (e: any) => {
-    setPassword(e.target.value);
-  };
+  // navigate
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: any) => {
+  // useForm
+  const { handleSubmit } = useForm<IFormLogin>();
+
+  // handlers
+  const onSubmit: SubmitHandler<IFormLogin> = () => {
     const loggin = async () => {
       let response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/login`,
@@ -65,8 +71,15 @@ const LoginFrom = () => {
     loggin();
   };
 
+  const handleEmail = (e: any) => {
+    setEmail(e.target.value);
+  };
+  const handlePassword = (e: any) => {
+    setPassword(e.target.value);
+  };
+
   return (
-    <Flex minH="100vh" align="center" justify="center" bg="#f5f5f5">
+    <Flex py={5} align="center" justify="center">
       <Stack direction={{ base: 'column', md: 'row' }} m="2">
         <Box maxW="xl" m="1" pt="2">
           <Image
@@ -115,58 +128,62 @@ const LoginFrom = () => {
               </Box>
             </VStack>
             <Stack spacing="4">
-              <FormControl id="email" isRequired>
-                <FormLabel>Email address</FormLabel>
-                <Input type="email" onChange={handleEmail} />
-              </FormControl>
-              <FormControl id="password" isRequired>
-                <FormLabel>Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    type={showPassword ? 'text' : 'password'}
-                    onChange={handlePassword}
-                  />
-                  <InputRightElement h="full">
-                    <Button
-                      variant="ghost"
-                      onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }
-                    >
-                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
-              <HStack w="full" justify="space-between" pb="8">
-                <Checkbox>Remember me.</Checkbox>
-              </HStack>
-              <Stack spacing={10} pt={2}>
-                <Button
-                  loadingText="Submitting"
-                  size="lg"
-                  bg={'blue.400'}
-                  color={'white'}
-                  _hover={{
-                    bg: 'blue.500',
-                  }}
-                  onClick={handleSubmit}
-                >
-                  Log in
-                </Button>
-              </Stack>
-              <Stack pt={2} align={'center'}>
-                <Flex>
-                  <Text mr="2">¿Nuevo en waqya?</Text>
-                  <Text color="blue.400">
-                    <Link to="/signup">Create una cuenta</Link>
-                  </Text>
-                </Flex>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <FormControl id="email" isRequired>
+                  <FormLabel>Email address</FormLabel>
+                  <Input type="email" onChange={handleEmail} />
+                </FormControl>
+                <FormControl id="password" isRequired>
+                  <FormLabel>Password</FormLabel>
+                  <InputGroup>
+                    <Input
+                      type={showPassword ? 'text' : 'password'}
+                      onChange={handlePassword}
+                      isRequired
+                    />
+                    <InputRightElement h="full">
+                      <Button
+                        variant="ghost"
+                        onClick={() =>
+                          setShowPassword((showPassword) => !showPassword)
+                        }
+                        leftIcon={
+                          showPassword ? <AiFillEye /> : <AiFillEyeInvisible />
+                        }
+                      />
+                    </InputRightElement>
+                  </InputGroup>
+                </FormControl>
+                <HStack w="full" justify="space-between" pb="8">
+                  <Checkbox>Remember me.</Checkbox>
+                </HStack>
+                <Stack spacing={10} pt={2}>
+                  <Button
+                    type="submit"
+                    loadingText="Submitting"
+                    size="lg"
+                    bg={'blue.400'}
+                    color={'white'}
+                    _hover={{
+                      bg: 'blue.500',
+                    }}
+                  >
+                    Log in
+                  </Button>
+                </Stack>
+                <Stack pt={2} align={'center'}>
+                  <Flex>
+                    <Text mr="2">¿Nuevo en waqya?</Text>
+                    <Text color="blue.400">
+                      <Link to="/signup">Create una cuenta</Link>
+                    </Text>
+                  </Flex>
 
-                <Text color="blue.400">
-                  <Link to="/">¿Olvidaste tu contraseña?</Link>
-                </Text>
-              </Stack>
+                  <Text color="blue.400">
+                    <Link to="/">¿Olvidaste tu contraseña?</Link>
+                  </Text>
+                </Stack>
+              </form>
             </Stack>
           </Box>
         </Flex>
@@ -175,4 +192,4 @@ const LoginFrom = () => {
   );
 };
 
-export default LoginFrom;
+export default LoginForm;
