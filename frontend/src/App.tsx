@@ -3,8 +3,8 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './user/Home';
 import Dashboard from './admin/Dashboard';
 
-import Login from './user/routes/Login/Login';
-import Signup from './user/routes/SignUp/SignUp';
+import Login from './user/routes/login/Login';
+import Signup from './user/routes/signUp/SignUp';
 import CallForPapers from './user/routes/CallForPapers/CallForPapers';
 import SearchCallForPapers from './user/routes/CallForPapers/SearchCallForPapers';
 import C4PPage from './user/routes/CallForPapers/CallForPaperPage';

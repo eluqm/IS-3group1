@@ -95,7 +95,7 @@ const Profile = () => {
               </FormControl>
               <FormControl>
                 <FormLabel>Apellidos</FormLabel>
-                <Input type="text" defaultValue={user.lastName}/>
+                <Input type="text" defaultValue={user.lastName} />
               </FormControl>
             </HStack>
             <FormControl mt={3}>
