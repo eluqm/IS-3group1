@@ -2,6 +2,7 @@ import {
   Link,
   Container,
   Flex,
+  Box,
   Spacer,
   Grid,
   GridItem,
@@ -14,14 +15,17 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  Heading,
 } from '@chakra-ui/react';
-import { SearchIcon, ChevronDownIcon } from '@chakra-ui/icons';
+
+
 import { GiExitDoor } from 'react-icons/gi';
-import { FiUser } from 'react-icons/fi';
+import { FiUser,FiLogIn } from 'react-icons/fi';
+import { FaFilter, FaSearch } from 'react-icons/fa';
+import { AiOutlineUserAdd } from 'react-icons/ai';
 
 import { Link as ReachLink, useNavigate } from 'react-router-dom';
 
-import './Header.css';
 
 import { useCookies } from 'react-cookie';
 import { useEffect } from 'react';
@@ -29,10 +33,6 @@ import { useEffect } from 'react';
 const Header = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['Token', 'User']);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log(cookies);
-  }, []);
 
   const handleLogout = () => {
     removeCookie('Token');
@@ -42,89 +42,116 @@ const Header = () => {
   };
 
   return (
-    <Container maxW="full" centerContent boxShadow={'md'} bg="white">
-      <Grid templateColumns="repeat(12, 1fr)" color={'black'}>
-        <GridItem p="2">
-          <Image
-            objectFit="cover"
-            boxSize="100%"
-            w="7"
-            src={'/src/img/imagotipo.png'}
-          />
-        </GridItem>
-        <GridItem p="2">
-          <Link as={ReachLink} to="/" _hover={{ textDecoration: 'none' }}>
-            <p className="title-waqya">Waqya</p>
-          </Link>
-        </GridItem>
-        <GridItem colSpan={7} p="2">
+    <Flex
+      align="center"
+      justifyContent="center"
+      py={2}
+      boxShadow={'xl'}
+      gap={'5'}
+    >
+      <Box>
+        <Link as={ReachLink} to="/" _hover={{ textDecoration: 'none' }}>
+          <Flex align="center" gap={3}>
+            <Image src={'/src/img/imagotipo.png'} h={'40px'} />
+            <Heading color="rgb(52, 131, 250)">Waqya</Heading>
+          </Flex>
+        </Link>
+      </Box>
+      <Box>
+        <Flex>
           <Input
-            placeholder="Buscar..."
-            color={'#9c98e7'}
-            borderRadius="full  "
+            placeholder="Buscar Call For Papers ..."
+            color="#9c98e7"
+            borderLeftRadius="full"
+            minW="30vw"
           />
-        </GridItem>
-        <GridItem pl="0.1" pt="2">
-          <Button colorScheme="blue">
-            <SearchIcon />
+          <Button leftIcon={<FaFilter />} borderRadius="0" colorScheme="teal" />
+          <Button
+            leftIcon={<FaSearch />}
+            borderRightRadius="full"
+            colorScheme="blue"
+          >
+            Buscar
           </Button>
-        </GridItem>
-        {cookies.Token ? (
-          <>
-            <GridItem p="1" pt="10px">
-              <Menu>
-                <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                  {cookies.User}
-                </MenuButton>
-                <MenuList>
-                  <MenuItem minH="48px" onClick={handleLogout}>
-                    <GiExitDoor />
-                    <Text ml={2}> Cerrar sesión</Text>
-                  </MenuItem>
-                  <MenuItem minH="40px">
-                    <FiUser />
-                    <Text ml={2}>Ver perfile</Text>
-                  </MenuItem>
-                </MenuList>
-              </Menu>
-            </GridItem>
-            <GridItem pt={1}>
-              <Link
-                as={ReachLink}
-                to="/user/profile"
-                _hover={{ textDecoration: 'none' }}
-              >
+        </Flex>
+      </Box>
+      {cookies.Token ? (
+        <Flex align="center" gap={3}>
+          <Link
+            as={ReachLink}
+            to="/user/profile"
+            _hover={{ textDecoration: 'none' }}
+          >
+            <Text fontWeight="600" color="gray.500">
+              {cookies.User || 'Joel Perca'}
+            </Text>
+          </Link>
+          <Box>
+            <Menu>
+              <MenuButton>
                 <Avatar
-                  name={`${cookies.User}`}
-                  src="https://bit.ly/broken-link"
+                  name={`${cookies.User || 'Joel Perca'}`}
+                  /* src="https://bit.ly/broken-link" */
                 />
-              </Link>
-            </GridItem>
-          </>
-        ) : (
-          <>
-            <GridItem p="1" pt="15">
-              <Link
-                as={ReachLink}
-                to="/login"
-                _hover={{ textDecoration: 'none' }}
+              </MenuButton>
+              <MenuList>
+                <MenuItem onClick={handleLogout}>
+                  <GiExitDoor />
+                  <Text ml={2}> Cerrar sesión</Text>
+                </MenuItem>
+                <MenuItem>
+                  <Link
+                    as={ReachLink}
+                    to="/user/profile"
+                    _hover={{ textDecoration: 'none' }}
+                  >
+                    <Flex align="center">
+                      <FiUser />
+                      <Text ml={2}> Ver perfile</Text>
+                    </Flex>
+                  </Link>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </Box>
+        </Flex>
+      ) : (
+        <Flex gap={3}>
+          <Link
+            as={ReachLink}
+            to="/login"
+            _hover={{ textDecoration: 'none', textColor: 'blue.500' }}
+          >
+            <Flex align="center" gap={1}>
+              <FiLogIn />
+              <Text
+                fontWeight="600"
+                color="gray.500"
+                _hover={{ textColor: 'blue.500' }}
               >
                 Ingresar
-              </Link>
-            </GridItem>
-            <GridItem p="2" pt="15">
-              <Link
-                as={ReachLink}
-                to="/register"
-                _hover={{ textDecoration: 'none' }}
+              </Text>
+            </Flex>
+          </Link>
+          <Link
+            as={ReachLink}
+            to="/register"
+            _hover={{ textDecoration: 'none', textColor: 'blue.500' }}
+          >
+            <Flex align="center" gap={1}>
+              <AiOutlineUserAdd />
+              <Text
+                fontWeight="600"
+                color="gray.500"
+                _hover={{ textColor: 'blue.500' }}
               >
                 Registrar
-              </Link>
-            </GridItem>
-          </>
-        )}
-      </Grid>
-    </Container>
+              </Text>
+            </Flex>
+          </Link>
+        </Flex>
+      )}
+    </Flex>
   );
 };
 
