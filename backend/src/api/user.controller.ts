@@ -67,7 +67,9 @@ class UserController {
   static updateUser: RequestHandler = async (req, res) => {
     try {
       const { id: userID } = req.params;
-      const user = await User.findOneAndUpdate({ _id: userID }, req.body);
+      const user = await User.findOneAndUpdate({ _id: userID }, req.body, {
+        new: true,
+      });
       if (!user)
         return res.status(404).json({ msg: `No User with id: ${userID}` });
       return res.status(200).json({ user });

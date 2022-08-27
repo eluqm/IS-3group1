@@ -11,11 +11,17 @@ import {
 import { CalendarIcon } from '@chakra-ui/icons';
 import { useParams, useNavigate } from 'react-router-dom';
 
+interface ImportantDates {
+  description: string;
+  date: string;
+}
+
 interface Props {
   c4pid: string;
   eventName: string;
   tittle: string;
   date: string;
+  importantDates?: Array<ImportantDates>;
   topics?: [string];
   mdName: string;
 }
@@ -61,12 +67,29 @@ const C4PCard = (props: Props) => {
             <CalendarIcon />
           </Circle>
           <Box ml="3">
-            <Text fontSize="sm" textAlign="center">
-              {props.date}
+            <Text fontSize="md" fontWeight="bold" textAlign="center">
+              Important dates
             </Text>
           </Box>
         </Flex>
-        <Flex>
+
+        {/** For important dates */}
+        <Flex justify="center" py={5}>
+          {props.importantDates?.map((importantDate, index) => (
+            <Box px={5} key={index}>
+              <Flex direction="column" align="center">
+                <Text color="#737070" fontSize="sm">
+                  {importantDate.date}
+                </Text>
+                <Text color="#3b3b3b" fontSize="sm">
+                  {importantDate.description}
+                </Text>
+              </Flex>
+            </Box>
+          ))}
+        </Flex>
+
+        <Flex wrap="wrap" gap={2}>
           {props.topics?.map((topic, index) => (
             <Badge key={index} rounded="full" colorScheme="purple" mr={1}>
               {topic}

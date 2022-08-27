@@ -28,8 +28,13 @@ import { Link as ReachLink, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useState } from 'react';
 
-const Header = () => {
-  const [searchValue, setSearchValue] = useState('');
+interface IProps {
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Header = (props: IProps) => {
+  //const [searchValue, setSearchValue] = useState('');
 
   const [cookies, setCookie, removeCookie] = useCookies(['Token', 'User']);
   const navigate = useNavigate();
@@ -42,12 +47,16 @@ const Header = () => {
   };
 
   const handleSearchChange = (e: any) => {
-    setSearchValue(e.target.value);
+    props.setSearchQuery(e.target.value);
   };
 
   const handleSearchSubmit = () => {
-    if (searchValue !== '') {
-      navigate(`/search/${searchValue}`);
+    if (props.searchQuery !== '') {
+      navigate(`/search/${props.searchQuery}`, {
+        replace: true,
+      });
+    } else {
+      navigate('/callforpapers', { replace: true });
     }
   };
 

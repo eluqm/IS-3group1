@@ -6,3 +6,11 @@
 .initial * {
   all: revert;
 }
+
+.initial h1 {
+  color: rgb(209, 161, 3);
+}
+
+.initial h2 {
+  color: rgb(134, 0, 0);
+}
