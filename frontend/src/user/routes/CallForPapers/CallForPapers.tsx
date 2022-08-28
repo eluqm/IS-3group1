@@ -17,31 +17,21 @@ import C4PCard from '../../components/C4PCard';
 
 import CallForPapersLayout from '../../layouts/CallForPapersLayout';
 
-const _topics = [
-  {
-    _id: '1',
-    name: 'Artificial Intelligence',
-    cant: 2,
-  },
-  {
-    _id: '2',
-    name: 'Computer vision & patterns',
-    cant: 3,
-  },
-];
+interface ILocation {
+  location: string;
+  count: number;
+  country?: string;
+}
 
-const _locations = [
-  {
-    _id: '1',
-    country: 'Perú',
-    imageUrl: 'http//domain.com/image/',
-  },
-  {
-    _id: '2',
-    country: 'Brasil',
-    imageUrl: 'http//domain.com/image/',
-  },
-];
+interface ITopic {
+  topic: string;
+  count: number;
+}
+
+interface ImportantDates {
+  description: string;
+  date: string;
+}
 
 interface ICallForPaper {
   _id: string;
@@ -51,17 +41,51 @@ interface ICallForPaper {
   topics: [string];
   location: string;
   filePath: string;
-  submisionDate?: Date;
+  importantDates?: Array<ImportantDates>;
 }
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 function CallForPapers() {
-  let [topics, setTopics] = useState(_topics);
-  let [locations, setLocations] = useState(_locations);
-  let [callforpapers, setCallForPapers] = useState<[ICallForPaper]>([]);
+  let [topics, setTopics] = useState<Array<ITopic>>([]);
+  let [locations, setLocations] = useState<Array<ILocation>>([]);
+  let [callforpapers, setCallForPapers] = useState<Array<ICallForPaper>>([]);
+  let searchQuery = useParams();
 
+  // for search
+  const [searchValue, setSearchValue] = useState<string>('');
+  /* 
+  useEffect(() => {
+    console.log(searchValue);
+  }); */
+
+  // fetch for locations
+  useEffect(() => {
+    const fetchLocations = async () => {
+      let response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/search/locations`
+      );
+      setLocations(response.data);
+    };
+    fetchLocations().catch(console.error);
+  }, []);
+
+  // fetch for topics
+  useEffect(() => {
+    const fetchTopics = async () => {
+      let response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/search/topics`
+      );
+      setTopics(response.data);
+    };
+    fetchTopics().catch(console.error);
+  }, []);
+
+  // fetch for callforpapers
   useEffect(() => {
     const fetchCallForPapers = async () => {
       let response = await axios.get(
@@ -70,11 +94,23 @@ function CallForPapers() {
       setCallForPapers(response.data.callForPapers);
     };
 
-    fetchCallForPapers();
-  }, []);
+    const fetchSearchCallForPapers = async () => {
+      let response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/search?search=${searchValue}`
+      );
+      setCallForPapers(response.data);
+    };
+
+    if (!searchValue) {
+      fetchCallForPapers();
+    } else {
+      fetchSearchCallForPapers();
+    }
+  }, [searchValue]);
 
   return (
-    <CallForPapersLayout>
+    <>
+      <Header searchQuery={searchValue} setSearchQuery={setSearchValue} />
       <div>
         {/* For Top Navbar -> By */}
         <Container>
@@ -90,20 +126,28 @@ function CallForPapers() {
         </Container>
 
         {/* For Content */}
-        <Flex flexDirection="row" mx="10vw">
+        <Flex mx="10vw">
           {/* For left navbar */}
-          <Box minW="25vw" boxShadow="2xl" rounded="lg" m="1rem" p="1rem">
+          <Flex
+            direction="column"
+            minW="25vw"
+            boxShadow="2xl"
+            rounded="lg"
+            m={5}
+            p={5}
+            h="100%"
+          >
             <Heading pb={3} pt={3}>
               Topics
             </Heading>
 
-            {topics.map((topic) => (
-              <Link href={'#'} key={topic._id}>
+            {topics.map((topic, index) => (
+              <Link href={'#'} key={index} _hover={{ textDecoration: 'none' }}>
                 <Flex>
                   <Text fontWeight={600} color={'gray.500'} mb={4}>
-                    {topic.name}
+                    {topic.topic}
                   </Text>
-                  <Text color={'blue.400'} ml="5px">{`(${topic.cant})`}</Text>
+                  <Text color={'blue.400'} ml="5px">{`(${topic.count})`}</Text>
                 </Flex>
               </Link>
             ))}
@@ -111,12 +155,12 @@ function CallForPapers() {
             <Heading pb={3} pt={3}>
               Locations
             </Heading>
-            {locations.map((location) => (
-              <Link href={'#'} key={location._id}>
+            {locations.map((location, index) => (
+              <Link href={'#'} key={index} _hover={{ textDecoration: 'none' }}>
                 <Flex mb={2}>
                   <Avatar
-                    name="Dan Abrahmov"
-                    src="https://bit.ly/dan-abramov"
+                    name={location.location}
+                    src={`https://countryflagsapi.com/png/${location.country}`}
                   />
                   <Text
                     fontWeight={600}
@@ -125,12 +169,12 @@ function CallForPapers() {
                     pt="12px"
                     ml="12px"
                   >
-                    {location.country}
+                    {location.location}
                   </Text>
                 </Flex>
               </Link>
             ))}
-          </Box>
+          </Flex>
 
           {/* For Items */}
           <Box minW="45vw" m="1rem" p="1rem">
@@ -146,6 +190,7 @@ function CallForPapers() {
                   eventName={c4p.eventName}
                   tittle={c4p.title}
                   date={`18-08-2022`}
+                  importantDates={c4p.importantDates}
                   topics={c4p.topics}
                   mdName={c4p.filePath}
                 />
@@ -154,7 +199,8 @@ function CallForPapers() {
           </Box>
         </Flex>
       </div>
-    </CallForPapersLayout>
+      <Footer />
+    </>
   );
 }
 export default CallForPapers;

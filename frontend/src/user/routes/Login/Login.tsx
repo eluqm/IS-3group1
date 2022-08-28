@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { Box } from '@chakra-ui/react';
-import LoginFrom from './section/LoginForm';
+import LoginForm from './section/LoginForm';
 
 import LogSignLayout from '../../layouts/LogSignLayout';
 
@@ -16,7 +16,7 @@ const Login = () => {
   return (
     <LogSignLayout>
       <Box>
-        <LoginFrom />
+        <LoginForm />
       </Box>
     </LogSignLayout>
   );

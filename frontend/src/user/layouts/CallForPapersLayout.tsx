@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -8,9 +8,10 @@ interface Props {
 }
 
 const CallForPapersLayout = (props: Props) => {
+  const [searchQuery, setSearchQuery] = useState<string>('');
   return (
     <>
-      <Header />
+      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       {props.children}
       <Footer />
     </>

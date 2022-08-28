@@ -17,14 +17,14 @@ router.post(
 );
 router.delete(
   "/:id",
-  AuthMiddleware.authenticate,
-  AuthMiddleware.authorize(Privilege.Admin),
+  /* AuthMiddleware.authenticate,
+  AuthMiddleware.authorize(Privilege.Admin), */
   CallForPaperController.deleteCallForPaper
 );
 router.patch(
   "/:id",
-  AuthMiddleware.authenticate,
-  AuthMiddleware.authorize(Privilege.Admin),
+  /* AuthMiddleware.authenticate,
+  AuthMiddleware.authorize(Privilege.Admin), */
   CallForPaperController.updateCallForPaper
 );
 

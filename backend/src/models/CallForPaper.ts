@@ -12,17 +12,15 @@ const CallForPaperSchema = new Schema(
     eventUrl: {
       type: String,
     },
-    /* beginDate: {
-      type: Date,
+    importantDates: {
+      type: Array,
     },
-    endDate: {
-      type: Date,
-    }, */
     topics: {
       type: [String],
     },
     location: {
       type: String,
+      required: true,
     },
     filePath: {
       type: String,

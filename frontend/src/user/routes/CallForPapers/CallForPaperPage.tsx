@@ -25,11 +25,17 @@ import axios from 'axios';
 import LogSignLayout from '../../layouts/LogSignLayout';
 import Comments from './section/Comments';
 
+interface ImportantDates {
+  description: string;
+  date: string;
+}
+
 interface ICall4Paper {
   _id: string;
   title: string;
   eventUrl: string;
   topics: Array<string>;
+  importantDates: Array<ImportantDates>;
   location: string;
   filePath: string;
 }
@@ -40,7 +46,15 @@ const C4PPage = () => {
   const params = useParams();
 
   let [contenido, setContenido] = useState('');
-  let [call4paper, setCall4paper] = useState<ICall4Paper>([]);
+  let [call4paper, setCall4paper] = useState<ICall4Paper>({
+    _id: '',
+    title: '',
+    eventUrl: '',
+    topics: [],
+    importantDates: [],
+    location: '',
+    filePath: '',
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,25 +83,29 @@ const C4PPage = () => {
               </Heading>
             </Box>
 
-            <Box bg="tomato" rounded="xl" background="gray.200">
+            <Box rounded="xl" shadow="xl">
               <Box mx="4" my="2">
                 <Box pl={4} pt={4}>
-                  <Flex alignItems="center" mb="2">
-                    <TbCalendarStats size="28px" />
-                    <Text mx="2">{'12-08-2022'}</Text>
-                  </Flex>
-                  <Flex alignItems="center" mb="2">
-                    <TbCalendarTime size="28px" />
-                    <Text mx="2">{'12-08-2022'}</Text>
-                  </Flex>
+                  {call4paper.importantDates.map((importantDate, index) => (
+                    <Flex key={index} alignItems="center" mb="2">
+                      <TbCalendarStats size="28px" />
+                      <Text mx="2" fontWeight='bold'>{importantDate.description}</Text>
+                      <Text>{importantDate.date}</Text>
+                    </Flex>
+                  ))}
                   <Flex alignItems="center" mb="2">
                     <IoLocationOutline size="28px" />
                     <Text mx="2">{call4paper.location}</Text>
                   </Flex>
                   <Flex alignItems="center" mb="2">
                     <TbLink size="28px" />
-                    <Link href={call4paper.eventUrl} mx="2" isExternal>
-                      Url del evento
+                    <Link
+                      href={call4paper.eventUrl}
+                      mx="2"
+                      isExternal
+                      fontWeight={600}
+                    >
+                      URL DEL EVENTO
                     </Link>
                   </Flex>
                 </Box>
